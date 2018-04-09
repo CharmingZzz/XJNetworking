@@ -64,9 +64,9 @@
 		84FBF8B74D5FCE8061006237 /* Pods-XJNetworking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XJNetworking_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A84C7A1747ED2ADDEA4DC54C /* Pods_XJNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XJNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C59F930B5EB88AC2524E64BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		E04F26097D289F2750609E16 /* XJNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = XJNetworking.podspec; path = ../XJNetworking.podspec; sourceTree = "<group>"; };
-		FD8B987C0E0A437BE2B4D74C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C59F930B5EB88AC2524E64BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E04F26097D289F2750609E16 /* XJNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XJNetworking.podspec; path = ../XJNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FD8B987C0E0A437BE2B4D74C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

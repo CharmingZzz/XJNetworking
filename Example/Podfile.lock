@@ -1,0 +1,16 @@
+PODS:
+  - XJNetworking (0.1.0)
+
+DEPENDENCIES:
+  - XJNetworking (from `../`)
+
+EXTERNAL SOURCES:
+  XJNetworking:
+    :path: ../
+
+SPEC CHECKSUMS:
+  XJNetworking: ceac5e54e72689b3bcefc031aed7b6a6cbea6649
+
+PODFILE CHECKSUM: 3872eb287e5f9a7f1400231af2460f8f2ea9718a
+
+COCOAPODS: 1.4.0

@@ -1,0 +1,22 @@
+{
+  "name": "XJNetworking",
+  "version": "0.1.0",
+  "summary": "A short description of XJNetworking.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/m17600026862@163.com/XJNetworking",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "m17600026862@163.com": "17600026862@163.com"
+  },
+  "source": {
+    "git": "https://github.com/m17600026862@163.com/XJNetworking.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "XJNetworking/Classes/**/*"
+}
