@@ -14,6 +14,11 @@
 
 @implementation HomeApi
 
+- (NSString *)baseURL
+{
+    return @"";
+}
+
 - (NSString *)methodname
 {
     return @"home";
@@ -22,6 +27,11 @@
 - (NSDictionary *)parameters
 {
     return @{};
+}
+
+- (NSArray<id<XJRequestProviderSourcePlugin>> *)plugins
+{
+    return @[self.plugin];
 }
 
 

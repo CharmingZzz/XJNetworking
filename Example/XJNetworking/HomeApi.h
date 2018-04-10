@@ -11,5 +11,6 @@
 
 @interface HomeApi : NSObject<XJRequestProviderCommonSource>
 
+@property (nonatomic,strong)id <XJRequestProviderSourcePlugin>plugin;
 
 @end

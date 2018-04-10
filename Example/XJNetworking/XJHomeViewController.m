@@ -11,7 +11,7 @@
 #import "XJNetworking.h"
 #import "HomeApi.h"
 
-@interface XJHomeViewController ()
+@interface XJHomeViewController ()<XJRequestProviderSourcePlugin>
 
 @property (nonatomic,strong)XJRequestProvider *homeApiProvider;
 
@@ -24,12 +24,46 @@
     
     self.view.backgroundColor = [UIColor redColor];
     
-    [self.homeApiProvider requestWithSource:[[HomeApi alloc]init] from:self success:^(XJURLResponse *response) {
+    HomeApi *api = [[HomeApi alloc]init];
+    api.plugin = self;
+    
+    [self.homeApiProvider requestWithSource:api from:self success:^(XJURLResponse *response) {
         
     } failure:^(NSError *error) {
-        
+        NSLog(@"----%@---",error.description);
     }];
 }
+
+#pragma mark - XJRequestProviderSourcePlugin
+
+- (BOOL)shouldSendApiWithParams:(NSDictionary *)params caller:(id)caller
+{
+    NSLog(@"----%s---%@",__func__,caller);
+    return YES;
+}
+
+- (NSURLRequest *)willSendApiWithRequest:(__kindof NSURLRequest *)request
+{
+    NSLog(@"----%s---",__func__);
+    return request;
+}
+
+- (void)afterSendApiWithParams:(NSDictionary *)params caller:(id)caller
+{
+    NSLog(@"----%s---",__func__);
+}
+
+- (BOOL)beforeApiFailureWithError:(NSError *)error caller:(id)caller
+{
+    NSLog(@"----%s---%@",__func__,caller);
+    return YES;
+}
+
+- (void)afterApiFailureWithError:(NSError *)error caller:(id)caller
+{
+    NSLog(@"----%s---%@",__func__,caller);
+}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

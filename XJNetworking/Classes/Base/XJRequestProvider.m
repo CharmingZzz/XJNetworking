@@ -8,13 +8,16 @@
 
 #import <objc/message.h>
 #import "XJRequestProvider.h"
+#import "XJRequestSender.h"
 
 @interface XJRequestProvider()
 
-@property (nonatomic,strong)NSHashTable *callerTable;
-@property (nonatomic,strong)NSMapTable *requestIDTable;
+@property (nonatomic,strong)NSMutableArray <NSNumber *>*requestIDs;
+@property (nonatomic,strong)NSMutableDictionary <NSNumber *,XJRequestCancellable *>*cancelTable;
 
 @end
+
+static NSString *observerKey = @"isCancelled";
 
 @implementation XJRequestProvider
 
@@ -26,40 +29,92 @@
 
 #pragma mark - public method
 
-- (void)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller
+- (XJRequestCancellable *)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller
 {
-    
+    return [self requestWithSource:source from:caller success:nil failure:nil];
 }
 
-- (void)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+- (XJRequestCancellable *)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
+    NSUInteger identifier = [[XJRequestSender shareInstance] sendRequestWithSource:source from:caller success:callBack failure:failCallBack];
     
+    if(identifier == NSNotFound){return nil;}
+    
+    [self.requestIDs addObject:@(identifier)];
+    
+    XJRequestCancellable *cancellable = [[XJRequestCancellable alloc]init];
+    [cancellable addObserver:self forKeyPath:observerKey options:NSKeyValueObservingOptionNew context:nil];
+    self.cancelTable[@(identifier)] = cancellable;
+    
+    return cancellable;
+}
+
+#pragma mark - Observer
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if([keyPath isEqualToString:observerKey] && [change[NSKeyValueChangeNewKey] integerValue] == 1){
+        [self.cancelTable enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key,
+                                                              XJRequestCancellable * _Nonnull obj,
+                                                              BOOL * _Nonnull stop) {
+            if ([object isEqual:obj]){
+                [[XJRequestSender shareInstance] cancelRequestWithIDs:@[key]];
+                *stop = YES;
+            }
+        }];
+    }
 }
 
 #pragma mark - lazy load
 
-- (NSHashTable *)callerTable
+- (NSMutableArray<NSNumber *> *)requestIDs
 {
-    if(!_callerTable){
-        _callerTable = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+    if(!_requestIDs){
+        _requestIDs = [NSMutableArray array];
     }
-    return  _callerTable;
+    return  _requestIDs;
 }
 
-- (NSMapTable *)requestIDTable
+- (NSMutableDictionary<NSNumber *,XJRequestCancellable *> *)cancelTable
 {
-    if(!_requestIDTable){
-        _requestIDTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsWeakMemory valueOptions:NSPointerFunctionsCopyIn];
+    if(!_cancelTable){
+        _cancelTable = [NSMutableDictionary dictionary];
     }
-    return _requestIDTable;
+    return _cancelTable;
 }
 
 #pragma mark - override method
 
 - (void)dealloc
 {
-    [self cancelAllRequest];
+    NSLog(@"-----%s-----",__func__);
+    
+    [self.cancelTable.allValues enumerateObjectsUsingBlock:^(XJRequestCancellable * _Nonnull obj,
+                                                             NSUInteger idx,
+                                                             BOOL * _Nonnull stop) {
+        [obj removeObserver:self forKeyPath:observerKey];
+    }];
+    [[XJRequestSender shareInstance] cancelRequestWithIDs:self.requestIDs];
 }
 
+@end
+
+@interface XJRequestCancellable()
+
+@property (nonatomic,assign,readwrite)BOOL isCancelled;
 
 @end
+
+@implementation XJRequestCancellable
+
+- (void)cancel
+{
+    self.isCancelled = YES;
+}
+
+@end
+
+
+
+
+

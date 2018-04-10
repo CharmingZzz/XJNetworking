@@ -7,14 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "XJURLResponse.h"
-
-typedef void(^successCallBack)(XJURLResponse *response);
-typedef void(^failureCallBack)(NSError *error);
+#import "XJNetworkingProtocol.h"
 
 @interface XJRequestSender : NSObject
 
-+ (instancetype)defaultSender;
-- (NSUInteger)sendRequest:(successCallBack)callBack failure:(failureCallBack)failCallBack;
++ (instancetype)shareInstance;
+
+- (NSUInteger)sendRequestWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
+
+- (void)cancelRequestWithIDs:(NSArray *)identifiers;
 
 @end

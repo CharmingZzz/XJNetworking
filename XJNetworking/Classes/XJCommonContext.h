@@ -9,4 +9,8 @@
 
 @interface XJCommonContext : NSObject
 
++ (instancetype)shareInstance;
+
+@property (nonatomic,strong)NSDictionary *commonParams;
+
 @end

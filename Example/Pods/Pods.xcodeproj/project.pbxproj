@@ -63,6 +63,11 @@
 		F5F46EDC207C61AC00D0B939 /* XJCommonContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EDA207C61AC00D0B939 /* XJCommonContext.m */; };
 		F5F46EDF207C664200D0B939 /* XJRequestSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46EDD207C664200D0B939 /* XJRequestSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5F46EE0207C664200D0B939 /* XJRequestSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EDE207C664200D0B939 /* XJRequestSender.m */; };
+		F5F46EE6207C9B7800D0B939 /* XJNetworkingProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46EE5207C9B7800D0B939 /* XJNetworkingProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5F46EEA207CA80F00D0B939 /* NSURLRequest+XJNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46EE8207CA80F00D0B939 /* NSURLRequest+XJNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5F46EEB207CA80F00D0B939 /* NSURLRequest+XJNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EE9207CA80F00D0B939 /* NSURLRequest+XJNetworking.m */; };
+		F5F46EEE207CADD700D0B939 /* NSArray+XJNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46EEC207CADD700D0B939 /* NSArray+XJNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5F46EEF207CADD700D0B939 /* NSArray+XJNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EED207CADD700D0B939 /* NSArray+XJNetworking.m */; };
 		F84DD74BB7F612DE372F8C051420DF72 /* UIProgressView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F05638D4877C1C9F1AAC3E348D5C7D70 /* UIProgressView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDF74E104E9A253E082DACFE6DA43656 /* XJNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C70AD22B430B92492D5F2B7F69D83286 /* XJNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FEF6EACE962EAE70E2EAC5F3C83EF7C8 /* AFImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = E06C4D570ABCF18D8095B9111D3D3F98 /* AFImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -177,6 +182,11 @@
 		F5F46EDA207C61AC00D0B939 /* XJCommonContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XJCommonContext.m; path = XJNetworking/Classes/XJCommonContext.m; sourceTree = "<group>"; };
 		F5F46EDD207C664200D0B939 /* XJRequestSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJRequestSender.h; sourceTree = "<group>"; };
 		F5F46EDE207C664200D0B939 /* XJRequestSender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJRequestSender.m; sourceTree = "<group>"; };
+		F5F46EE5207C9B7800D0B939 /* XJNetworkingProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJNetworkingProtocol.h; sourceTree = "<group>"; };
+		F5F46EE8207CA80F00D0B939 /* NSURLRequest+XJNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+XJNetworking.h"; sourceTree = "<group>"; };
+		F5F46EE9207CA80F00D0B939 /* NSURLRequest+XJNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+XJNetworking.m"; sourceTree = "<group>"; };
+		F5F46EEC207CADD700D0B939 /* NSArray+XJNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+XJNetworking.h"; sourceTree = "<group>"; };
+		F5F46EED207CADD700D0B939 /* NSArray+XJNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+XJNetworking.m"; sourceTree = "<group>"; };
 		F6F60CDA8F13F255D3A49CF46EF89066 /* AFNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-umbrella.h"; sourceTree = "<group>"; };
 		FBE04BECE7DFA36EB37D41E888A9C7AD /* Pods-XJNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XJNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FC14B037E0208EA550DD2FB4596B7B3B /* Pods-XJNetworking_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-XJNetworking_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -320,6 +330,8 @@
 				F5F46EDA207C61AC00D0B939 /* XJCommonContext.m */,
 				D54A642A1AC39395028CFF0E23430F26 /* Base */,
 				F58CECE2207B6ECA0047CF5A /* URLResponse */,
+				F5F46EE4207C9B5500D0B939 /* Protocol */,
+				F5F46EE7207CA7DA00D0B939 /* Categories */,
 				897891C10AD2CB90A400CEEFDC462E69 /* Pod */,
 				372DBB6FB978D5E944B656A4405B0175 /* Support Files */,
 			);
@@ -485,6 +497,27 @@
 			path = XJNetworking/Classes/URLResponse;
 			sourceTree = "<group>";
 		};
+		F5F46EE4207C9B5500D0B939 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				F5F46EE5207C9B7800D0B939 /* XJNetworkingProtocol.h */,
+			);
+			name = Protocol;
+			path = XJNetworking/Classes/Protocol;
+			sourceTree = "<group>";
+		};
+		F5F46EE7207CA7DA00D0B939 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F5F46EE8207CA80F00D0B939 /* NSURLRequest+XJNetworking.h */,
+				F5F46EE9207CA80F00D0B939 /* NSURLRequest+XJNetworking.m */,
+				F5F46EEC207CADD700D0B939 /* NSArray+XJNetworking.h */,
+				F5F46EED207CADD700D0B939 /* NSArray+XJNetworking.m */,
+			);
+			name = Categories;
+			path = XJNetworking/Classes/Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -535,7 +568,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5F46EDB207C61AC00D0B939 /* XJCommonContext.h in Headers */,
+				F5F46EE6207C9B7800D0B939 /* XJNetworkingProtocol.h in Headers */,
 				F5F46EDF207C664200D0B939 /* XJRequestSender.h in Headers */,
+				F5F46EEE207CADD700D0B939 /* NSArray+XJNetworking.h in Headers */,
+				F5F46EEA207CA80F00D0B939 /* NSURLRequest+XJNetworking.h in Headers */,
 				FDF74E104E9A253E082DACFE6DA43656 /* XJNetworking-umbrella.h in Headers */,
 				F58CECE5207B6EF40047CF5A /* XJURLResponse.h in Headers */,
 				4F0194C1A9E69C824FFE2C8FB6D0B7E9 /* XJNetworking.h in Headers */,
@@ -659,6 +695,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F46EEF207CADD700D0B939 /* NSArray+XJNetworking.m in Sources */,
+				F5F46EEB207CA80F00D0B939 /* NSURLRequest+XJNetworking.m in Sources */,
 				F5F46EDC207C61AC00D0B939 /* XJCommonContext.m in Sources */,
 				F5F46EE0207C664200D0B939 /* XJRequestSender.m in Sources */,
 				B69665793EC401E38FB26AC13E454331 /* XJNetworking-dummy.m in Sources */,
