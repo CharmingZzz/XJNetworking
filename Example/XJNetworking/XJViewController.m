@@ -8,6 +8,9 @@
 
 #import "XJViewController.h"
 
+#import "XJNetworking.h"
+#import "HomeApi.h"
+
 @interface XJViewController ()
 
 @end
@@ -17,7 +20,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    [[[HomeApi alloc]init].homeApiProvider requestWithSuccess:^(XJURLResponse *response) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning

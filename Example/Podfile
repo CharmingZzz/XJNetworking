@@ -5,7 +5,5 @@ target 'XJNetworking_Example' do
 
   target 'XJNetworking_Tests' do
     inherit! :search_paths
-
-    
   end
 end

@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		7677983D4BAF75C0CDE4C0D5 /* Pods_XJNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF45DC2EB91E210192C5FE /* Pods_XJNetworking_Example.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46ED7207C4D4600D0B939 /* HomeApi.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		A84C7A1747ED2ADDEA4DC54C /* Pods_XJNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XJNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59F930B5EB88AC2524E64BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E04F26097D289F2750609E16 /* XJNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XJNetworking.podspec; path = ../XJNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F5F46ED6207C4D4600D0B939 /* HomeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeApi.h; sourceTree = "<group>"; };
+		F5F46ED7207C4D4600D0B939 /* HomeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeApi.m; sourceTree = "<group>"; };
 		FD8B987C0E0A437BE2B4D74C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +146,8 @@
 		6003F593195388D20070C39A /* Example for XJNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				F5F46ED6207C4D4600D0B939 /* HomeApi.h */,
+				F5F46ED7207C4D4600D0B939 /* HomeApi.m */,
 				6003F59C195388D20070C39A /* XJAppDelegate.h */,
 				6003F59D195388D20070C39A /* XJAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -304,10 +309,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/XJNetworking/XJNetworking.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XJNetworking.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +413,7 @@
 				6003F59E195388D20070C39A /* XJAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* XJViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

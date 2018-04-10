@@ -9,5 +9,6 @@
 #ifndef XJNetworking_h
 #define XJNetworking_h
 
+#import "XJRequestProvider.h"
 
 #endif /* XJNetworking_h */

@@ -10,4 +10,25 @@
 
 @implementation XJRequestProvider
 
++ (instancetype)providerWithSource:(id)source
+{
+    NSAssert([source conformsToProtocol:@protocol(XJRequestProviderCommonSource)], @"source have to conform XJRequestProviderCommonSource protocol....");
+    
+    XJRequestProvider *provider = [[XJRequestProvider alloc]init];
+    
+    return provider;
+}
+
+- (void)request
+{
+    
+    
+    
+}
+
+- (void)requestWithSuccess:(successCallBack)callBack failure:(failureCallBack)failCallBack
+{
+    
+}
+
 @end
