@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 
-#import "XJURLResponse.h"
+#import "XJRequestSender.h"
+
 
 typedef NS_ENUM(NSUInteger, XJRequestProviderRequestType) {
     XJRequestProviderRequestTypeGet,
@@ -41,17 +42,28 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderTaskType) {
 
 @end
 
-typedef void(^successCallBack)(XJURLResponse *response);
-typedef void(^failureCallBack)(NSError *error);
+@protocol XJRequestProviderSourcePlugin
+
+@optional
+- (BOOL)shouldSendApiWithParams:(NSDictionary *)params caller:(id)caller;
+- (void)afterSendApiWithParams:(NSDictionary *)params caller:(id)caller;
+
+- (BOOL)beforeApiSuccessWithResponse:(XJURLResponse *)response caller:(id)caller;
+- (void)afterApiSuccessWithResponse:(XJURLResponse *)response caller:(id)caller;
+
+- (BOOL)beforeApiFailureWithResponse:(XJURLResponse *)response caller:(id)caller;
+- (void)afterApiFailureWithResponse:(XJURLResponse *)response caller:(id)caller;
+
+@end
 
 
 @interface XJRequestProvider<SourceType> : NSObject
 
 + (instancetype)providerWithSource:(SourceType)source;
 
-- (void)request;
+- (void)requestWithCaller:(id)caller;
 
-- (void)requestWithSuccess:(successCallBack)callBack failure:(failureCallBack)failCallBack;
+- (void)requestWithCaller:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
 
 
 @end

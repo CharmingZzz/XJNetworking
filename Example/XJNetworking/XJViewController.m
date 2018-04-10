@@ -7,9 +7,7 @@
 //
 
 #import "XJViewController.h"
-
-#import "XJNetworking.h"
-#import "HomeApi.h"
+#import "XJHomeViewController.h"
 
 @interface XJViewController ()
 
@@ -21,11 +19,11 @@
 {
     [super viewDidLoad];
     
-    [[[HomeApi alloc]init].homeApiProvider requestWithSuccess:^(XJURLResponse *response) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self presentViewController:[XJHomeViewController new] animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

@@ -25,6 +25,7 @@
 		7677983D4BAF75C0CDE4C0D5 /* Pods_XJNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF45DC2EB91E210192C5FE /* Pods_XJNetworking_Example.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46ED7207C4D4600D0B939 /* HomeApi.m */; };
+		F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EE2207C859700D0B939 /* XJHomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		E04F26097D289F2750609E16 /* XJNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XJNetworking.podspec; path = ../XJNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F5F46ED6207C4D4600D0B939 /* HomeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeApi.h; sourceTree = "<group>"; };
 		F5F46ED7207C4D4600D0B939 /* HomeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeApi.m; sourceTree = "<group>"; };
+		F5F46EE1207C859700D0B939 /* XJHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJHomeViewController.h; sourceTree = "<group>"; };
+		F5F46EE2207C859700D0B939 /* XJHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJHomeViewController.m; sourceTree = "<group>"; };
 		FD8B987C0E0A437BE2B4D74C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +156,8 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* XJViewController.h */,
 				6003F5A6195388D20070C39A /* XJViewController.m */,
+				F5F46EE1207C859700D0B939 /* XJHomeViewController.h */,
+				F5F46EE2207C859700D0B939 /* XJHomeViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -414,6 +419,7 @@
 				6003F5A7195388D20070C39A /* XJViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */,
+				F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
