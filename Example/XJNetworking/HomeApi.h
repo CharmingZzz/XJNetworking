@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <XJNetworking/XJNetworking.h>
 
-@interface HomeApi : NSObject
+@interface HomeApi : NSObject<XJRequestProviderCommonSource>
 
-@property (nonatomic,strong,readonly)XJRequestProvider *homeApiProvider;
 
 @end

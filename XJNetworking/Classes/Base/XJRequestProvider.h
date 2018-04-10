@@ -57,13 +57,15 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderTaskType) {
 @end
 
 
-@interface XJRequestProvider<SourceType> : NSObject
+@interface XJRequestProvider: NSObject
 
-+ (instancetype)providerWithSource:(SourceType)source;
++ (instancetype)defaultProvider;
 
-- (void)requestWithCaller:(id)caller;
+- (void)requestWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller;
 
-- (void)requestWithCaller:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
+- (void)requestWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
 
+- (void)cancelAllRequest;
+- (void)cancelRequestWithID:(NSString *)identifier;
 
 @end

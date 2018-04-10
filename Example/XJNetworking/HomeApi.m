@@ -8,9 +8,7 @@
 
 #import "HomeApi.h"
 
-@interface HomeApi()<XJRequestProviderCommonSource>
-
-@property (nonatomic,strong,readwrite)XJRequestProvider *homeApiProvider;
+@interface HomeApi()
 
 @end
 
@@ -26,12 +24,5 @@
     return @{};
 }
 
-- (XJRequestProvider *)homeApiProvider
-{
-    if(!_homeApiProvider){
-        _homeApiProvider = [XJRequestProvider<HomeApi *> providerWithSource:self];
-    }
-    return _homeApiProvider;
-}
 
 @end

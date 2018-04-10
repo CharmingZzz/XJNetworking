@@ -13,6 +13,8 @@
 
 @interface XJHomeViewController ()
 
+@property (nonatomic,strong)XJRequestProvider *homeApiProvider;
+
 @end
 
 @implementation XJHomeViewController
@@ -22,7 +24,7 @@
     
     self.view.backgroundColor = [UIColor redColor];
     
-    [[[HomeApi alloc]init].homeApiProvider requestWithCaller:self success:^(XJURLResponse *response) {
+    [self.homeApiProvider requestWithSource:[[HomeApi alloc]init] from:self success:^(XJURLResponse *response) {
         
     } failure:^(NSError *error) {
         
@@ -34,16 +36,18 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (XJRequestProvider *)homeApiProvider
+{
+    if(!_homeApiProvider){
+        _homeApiProvider = [XJRequestProvider defaultProvider];
+    }
+    return _homeApiProvider;
+}
+
 - (void)dealloc
 {
     NSLog(@"----dealloc---");
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 
 @end
