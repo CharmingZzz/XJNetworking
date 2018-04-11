@@ -35,7 +35,8 @@ static NSString *observerKey = @"isCancelled";
 
 - (XJRequestCancellable *)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
-    NSUInteger identifier = [[XJSenderFactory shareInstance] sendRequestWithSource:source from:caller success:callBack failure:failCallBack];
+    XJTaskInfo *info = [[XJTaskInfo alloc]initWithSource:source from:caller];
+    NSUInteger identifier = [[XJSenderFactory shareInstance] sendRequestWithTaskInfo:info success:callBack failure:failCallBack];
     
     if(identifier == NSNotFound){return nil;}
     

@@ -7,6 +7,7 @@
 
 #import "XJSenderFactory.h"
 #import "XJCommonContext.h"
+#import "NSArray+XJNetworking.h"
 
 @interface XJSenderFactory()
 
@@ -41,13 +42,13 @@ static NSString *TaskType[3] = {
     return sender_;
 }
 
-- (NSUInteger)sendRequestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+- (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
-    self.manager.requestSerializer = [source respondsToSelector:@selector(requestSerializer)] ? source.requestSerialization : [AFHTTPRequestSerializer serializer];
-    self.manager.responseSerializer = [source respondsToSelector:@selector(responseSerialization)] ? source.responseSerialization :[AFJSONResponseSerializer serializer];
+    self.manager.requestSerializer = [taskInfo.source respondsToSelector:@selector(requestSerializer)] ? taskInfo.source.requestSerialization : [AFHTTPRequestSerializer serializer];
+    self.manager.responseSerializer = [taskInfo.source respondsToSelector:@selector(responseSerialization)] ? taskInfo.source.responseSerialization :[AFJSONResponseSerializer serializer];
     
-    XJRequestProviderTaskType taskType = [source respondsToSelector:@selector(taskType)] ? source.taskType : XJRequestProviderTaskTypeRequest;
-   return [[self chooseSender:taskType] sendRequestWithSource:source from:caller success:callBack failure:failCallBack];
+    XJRequestProviderTaskType taskType = [taskInfo.source respondsToSelector:@selector(taskType)] ? taskInfo.source.taskType : XJRequestProviderTaskTypeRequest;
+   return [[self chooseSender:taskType] sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack];
 }
 
 - (void)cancelRequestWithIDs:(NSArray *)identifiers
@@ -101,6 +102,62 @@ static NSString *TaskType[3] = {
         _senderTable = [NSMutableDictionary dictionaryWithCapacity:sizeof(TaskType)/sizeof(TaskType[0])];
     }
     return _senderTable;
+}
+
+@end
+
+
+@interface XJTaskInfo()
+
+@property (nonatomic, strong, readwrite)id <XJRequestProviderCommonSource>source;
+@property (nonatomic, weak, readwrite)id caller;
+@property (nonatomic, copy, readwrite)NSString *fullUrl;
+@property (nonatomic, copy, readwrite)NSDictionary *finalParams;
+
+@end
+
+@implementation XJTaskInfo
+
+- (instancetype)initWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller
+{
+    if(self = [super init]){
+        self.source = source;
+        self.caller = caller;
+    }
+    return self;
+}
+
+- (BOOL)prepareForRequset
+{
+    self.fullUrl = [self.source.baseURL stringByAppendingPathComponent:self.source.methodname];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:self.source.parameters];
+    [params addEntriesFromDictionary:[XJCommonContext shareInstance].commonParams];
+    
+    BOOL shouldSend = [self.source.plugins xj_any:
+                       ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
+                           if([obj respondsToSelector:@selector(shouldSendApiWithParams:caller:)]){
+                               if(![obj shouldSendApiWithParams:params caller:self.caller]){
+                                   return YES;
+                               }
+                           }
+                           return NO;
+                       }];
+    
+    if (!shouldSend) {
+        __block NSDictionary *pams = [params copy];
+        [self.source.plugins enumerateObjectsUsingBlock:
+                                ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,
+                                  NSUInteger idx,
+                                  BOOL * _Nonnull stop) {
+            if([obj respondsToSelector:@selector(willSendApiWithParams:)]){
+                pams = [obj willSendApiWithParams:pams];
+            }
+        }];
+        self.finalParams = pams;
+    }
+    
+    return !shouldSend;
 }
 
 @end

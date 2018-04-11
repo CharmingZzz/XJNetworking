@@ -26,7 +26,7 @@
 
 - (NSDictionary *)parameters
 {
-    return @{};
+    return @{@"test":@"testPams"};
 }
 
 - (NSArray<id<XJRequestProviderSourcePlugin>> *)plugins

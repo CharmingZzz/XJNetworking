@@ -27,13 +27,14 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderTaskType) {
 
 @optional
 - (BOOL)shouldSendApiWithParams:(NSDictionary *)params caller:(id)caller;
+- (NSDictionary *)willSendApiWithParams:(NSDictionary *)params;
 - (NSURLRequest *)willSendApiWithRequest:(__kindof NSURLRequest *)request;
 - (void)afterSendApiWithParams:(NSDictionary *)params caller:(id)caller;
 
-- (BOOL)beforeApiSuccessWithResponse:(XJURLResponse *)response caller:(id)caller;
+- (BOOL)beforeApiSuccessWithResponse:(XJURLResponse *)response;
 - (void)afterApiSuccessWithResponse:(XJURLResponse *)response caller:(id)caller;
 
-- (BOOL)beforeApiFailureWithError:(NSError *)error caller:(id)caller;
+- (BOOL)beforeApiFailureWithError:(NSError *)error;
 - (void)afterApiFailureWithError:(NSError *)error caller:(id)caller;
 
 @end

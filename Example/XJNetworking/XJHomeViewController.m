@@ -42,6 +42,12 @@
     return YES;
 }
 
+- (NSDictionary *)willSendApiWithParams:(NSDictionary *)params
+{
+    NSLog(@"-----%@-----",params);
+    return params;
+}
+
 - (NSURLRequest *)willSendApiWithRequest:(__kindof NSURLRequest *)request
 {
     NSLog(@"----%s---",__func__);
@@ -53,9 +59,9 @@
     NSLog(@"----%s---",__func__);
 }
 
-- (BOOL)beforeApiFailureWithError:(NSError *)error caller:(id)caller
+- (BOOL)beforeApiFailureWithError:(NSError *)error
 {
-    NSLog(@"----%s---%@",__func__,caller);
+    NSLog(@"----%s---",__func__);
     return YES;
 }
 

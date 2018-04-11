@@ -12,31 +12,19 @@
 
 @implementation XJRequestSender
 
-- (NSUInteger)sendRequestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+- (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
-    NSString *url = [source.baseURL stringByAppendingPathComponent:source.methodname];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:source.parameters];
-    [params addEntriesFromDictionary:[XJCommonContext shareInstance].commonParams];
-    
-    NSError *error = nil;
-    NSUInteger type = [source respondsToSelector:@selector(requestType)] ? source.requestType : XJRequestProviderRequestTypePost;
-    
-    BOOL shouldSend = [source.plugins xj_any:
-                       ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
-                           if([obj respondsToSelector:@selector(shouldSendApiWithParams:caller:)]){
-                               if(![obj shouldSendApiWithParams:params caller:caller]){
-                                   return YES;
-                               }
-                           }
-                           return NO;
-                       }];
-    
-    if (!shouldSend){
-        NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:RequestType[type] URLString:url parameters:params error:&error];
+    if ([taskInfo prepareForRequset]){
+        
+        id <XJRequestProviderCommonSource>source = taskInfo.source;
+        id caller = taskInfo.caller;
+        
+        NSError *error = nil;
+        NSUInteger type = [source respondsToSelector:@selector(requestType)] ? source.requestType : XJRequestProviderRequestTypePost;
+        NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:RequestType[type] URLString:taskInfo.fullUrl parameters:taskInfo.finalParams error:&error];
         if(error){return NSNotFound;}
         
-        request.xj_requestParams = params;
+        request.xj_requestParams = taskInfo.finalParams;
         __block NSURLRequest *urlRequest = [request copy];
         
         [source.plugins enumerateObjectsUsingBlock:
@@ -57,8 +45,8 @@
             if(error){
                 BOOL beforeFail = [source.plugins xj_any:
                                    ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
-                                       if([obj respondsToSelector:@selector(beforeApiFailureWithError:caller:)]){
-                                           if(![obj beforeApiFailureWithError:error caller:caller]){
+                                       if([obj respondsToSelector:@selector(beforeApiFailureWithError:)]){
+                                           if(![obj beforeApiFailureWithError:error]){
                                                return YES;
                                            }
                                        }
@@ -71,8 +59,8 @@
                 
                 BOOL beforeSuccess = [source.plugins xj_any:
                                       ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
-                                          if([obj respondsToSelector:@selector(beforeApiSuccessWithResponse:caller:)]){
-                                              if(![obj beforeApiSuccessWithResponse:urlRes caller:caller]){
+                                          if([obj respondsToSelector:@selector(beforeApiSuccessWithResponse:)]){
+                                              if(![obj beforeApiSuccessWithResponse:urlRes]){
                                                   return YES;
                                               }
                                           }
