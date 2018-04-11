@@ -185,14 +185,13 @@
                 unsupportedType = YES;
             } break;
                 
-            default: // what?!
+            default:
             {
                 unsupportedType = YES;
             } break;
         }
         
         if (unsupportedType) {
-            // Try with some dummy type...
             
             NSUInteger size = 0;
             NSGetSizeAndAlignment(type, &size, NULL);
@@ -221,13 +220,9 @@ struct dummy arg = va_arg(args, struct dummy); \
             case_size(57) case_size(58) case_size(59) case_size(60)
             case_size(61) case_size(62) case_size(63) case_size(64)
             else {
-                /*
-                 Larger than 256 byte?! I don't want to deal with this stuff up...
-                 Ignore this argument.
-                 */
                 struct dummy {char tmp;};
                 for (int i = 0; i < size; i++) va_arg(args, struct dummy);
-                NSLog(@"YYCategories performSelectorWithArgs unsupported type:%s (%lu bytes)",
+                NSLog(@"performSelectorWithArgs unsupported type:%s (%lu bytes)",
                       [sig getArgumentTypeAtIndex:index],(unsigned long)size);
             }
 #undef case_size

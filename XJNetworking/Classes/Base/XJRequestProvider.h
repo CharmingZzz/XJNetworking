@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "XJNetworkingProtocol.h"
 
 @class XJRequestCancellable;

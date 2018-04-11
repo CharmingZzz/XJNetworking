@@ -8,11 +8,10 @@
 
 #import <objc/message.h>
 #import "XJRequestProvider.h"
-#import "XJRequestSender.h"
+#import "XJSenderFactory.h"
 
 @interface XJRequestProvider()
 
-@property (nonatomic,strong)NSMutableArray <NSNumber *>*requestIDs;
 @property (nonatomic,strong)NSMutableDictionary <NSNumber *,XJRequestCancellable *>*cancelTable;
 
 @end
@@ -36,11 +35,9 @@ static NSString *observerKey = @"isCancelled";
 
 - (XJRequestCancellable *)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
-    NSUInteger identifier = [[XJRequestSender shareInstance] sendRequestWithSource:source from:caller success:callBack failure:failCallBack];
+    NSUInteger identifier = [[XJSenderFactory shareInstance] sendRequestWithSource:source from:caller success:callBack failure:failCallBack];
     
     if(identifier == NSNotFound){return nil;}
-    
-    [self.requestIDs addObject:@(identifier)];
     
     XJRequestCancellable *cancellable = [[XJRequestCancellable alloc]init];
     [cancellable addObserver:self forKeyPath:observerKey options:NSKeyValueObservingOptionNew context:nil];
@@ -58,7 +55,7 @@ static NSString *observerKey = @"isCancelled";
                                                               XJRequestCancellable * _Nonnull obj,
                                                               BOOL * _Nonnull stop) {
             if ([object isEqual:obj]){
-                [[XJRequestSender shareInstance] cancelRequestWithIDs:@[key]];
+                [[XJSenderFactory shareInstance] cancelRequestWithIDs:@[key]];
                 *stop = YES;
             }
         }];
@@ -66,14 +63,6 @@ static NSString *observerKey = @"isCancelled";
 }
 
 #pragma mark - lazy load
-
-- (NSMutableArray<NSNumber *> *)requestIDs
-{
-    if(!_requestIDs){
-        _requestIDs = [NSMutableArray array];
-    }
-    return  _requestIDs;
-}
 
 - (NSMutableDictionary<NSNumber *,XJRequestCancellable *> *)cancelTable
 {
@@ -94,7 +83,7 @@ static NSString *observerKey = @"isCancelled";
                                                              BOOL * _Nonnull stop) {
         [obj removeObserver:self forKeyPath:observerKey];
     }];
-    [[XJRequestSender shareInstance] cancelRequestWithIDs:self.requestIDs];
+    [[XJSenderFactory shareInstance] cancelRequestWithIDs:self.cancelTable.allKeys];
 }
 
 @end

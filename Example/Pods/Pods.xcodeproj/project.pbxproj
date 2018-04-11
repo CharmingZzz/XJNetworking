@@ -57,6 +57,8 @@
 		EAF16633DB3C992CF975BE4A2932D41C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73950156966D6FB93DC14CBF7F3326A6 /* AFHTTPSessionManager.m */; };
 		F1CAA2EBDDFF558DEF98684F2479A7AF /* AFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 43581AD63883CAA415A71F817EED5D51 /* AFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2D899C7AA0D7FC20160091BB9D31CF3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = E287540F6AAFBD6834BFA37866AE26DA /* UIImageView+AFNetworking.m */; };
+		F520EEBD207DE6C400E74E8D /* XJSenderFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F520EEBB207DE6C400E74E8D /* XJSenderFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F520EEBE207DE6C400E74E8D /* XJSenderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F520EEBC207DE6C400E74E8D /* XJSenderFactory.m */; };
 		F58CECE5207B6EF40047CF5A /* XJURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = F58CECE3207B6EF40047CF5A /* XJURLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F58CECE6207B6EF40047CF5A /* XJURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F58CECE4207B6EF40047CF5A /* XJURLResponse.m */; };
 		F5F46EDB207C61AC00D0B939 /* XJCommonContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46ED9207C61AC00D0B939 /* XJCommonContext.h */; };
@@ -176,6 +178,8 @@
 		EB9F5DA3051DAC003422E54B3B4A6E9D /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		EECF143AE392C1D26B1C57DFCCC39E7E /* AFSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
 		F05638D4877C1C9F1AAC3E348D5C7D70 /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
+		F520EEBB207DE6C400E74E8D /* XJSenderFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJSenderFactory.h; sourceTree = "<group>"; };
+		F520EEBC207DE6C400E74E8D /* XJSenderFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJSenderFactory.m; sourceTree = "<group>"; };
 		F58CECE3207B6EF40047CF5A /* XJURLResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJURLResponse.h; sourceTree = "<group>"; };
 		F58CECE4207B6EF40047CF5A /* XJURLResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJURLResponse.m; sourceTree = "<group>"; };
 		F5F46ED9207C61AC00D0B939 /* XJCommonContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XJCommonContext.h; path = XJNetworking/Classes/XJCommonContext.h; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 				F58CECE2207B6ECA0047CF5A /* URLResponse */,
 				F5F46EE4207C9B5500D0B939 /* Protocol */,
 				F5F46EE7207CA7DA00D0B939 /* Categories */,
+				F520EEBA207DE52400E74E8D /* SenderFactory */,
 				897891C10AD2CB90A400CEEFDC462E69 /* Pod */,
 				372DBB6FB978D5E944B656A4405B0175 /* Support Files */,
 			);
@@ -452,8 +457,6 @@
 			children = (
 				97B6D12677B1C00B8B66ABAA6B7CFD9E /* XJRequestProvider.h */,
 				C18943B139794ADC2A04A6710F86E222 /* XJRequestProvider.m */,
-				F5F46EDD207C664200D0B939 /* XJRequestSender.h */,
-				F5F46EDE207C664200D0B939 /* XJRequestSender.m */,
 			);
 			name = Base;
 			path = XJNetworking/Classes/Base;
@@ -485,6 +488,18 @@
 				58ADEC1A744624280C424466F85276D6 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F520EEBA207DE52400E74E8D /* SenderFactory */ = {
+			isa = PBXGroup;
+			children = (
+				F520EEBB207DE6C400E74E8D /* XJSenderFactory.h */,
+				F520EEBC207DE6C400E74E8D /* XJSenderFactory.m */,
+				F5F46EDD207C664200D0B939 /* XJRequestSender.h */,
+				F5F46EDE207C664200D0B939 /* XJRequestSender.m */,
+			);
+			name = SenderFactory;
+			path = XJNetworking/Classes/SenderFactory;
 			sourceTree = "<group>";
 		};
 		F58CECE2207B6ECA0047CF5A /* URLResponse */ = {
@@ -573,6 +588,7 @@
 				F5F46EEE207CADD700D0B939 /* NSArray+XJNetworking.h in Headers */,
 				F5F46EEA207CA80F00D0B939 /* NSURLRequest+XJNetworking.h in Headers */,
 				FDF74E104E9A253E082DACFE6DA43656 /* XJNetworking-umbrella.h in Headers */,
+				F520EEBD207DE6C400E74E8D /* XJSenderFactory.h in Headers */,
 				F58CECE5207B6EF40047CF5A /* XJURLResponse.h in Headers */,
 				4F0194C1A9E69C824FFE2C8FB6D0B7E9 /* XJNetworking.h in Headers */,
 				12263796EB155579E03954D38E304CDF /* XJRequestProvider.h in Headers */,
@@ -702,6 +718,7 @@
 				B69665793EC401E38FB26AC13E454331 /* XJNetworking-dummy.m in Sources */,
 				F58CECE6207B6EF40047CF5A /* XJURLResponse.m in Sources */,
 				C6D34FA40DC5B0C18D0426DF5610345D /* XJRequestProvider.m in Sources */,
+				F520EEBE207DE6C400E74E8D /* XJSenderFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
