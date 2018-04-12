@@ -61,7 +61,7 @@
 		F520EEBE207DE6C400E74E8D /* XJSenderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F520EEBC207DE6C400E74E8D /* XJSenderFactory.m */; };
 		F58CECE5207B6EF40047CF5A /* XJURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = F58CECE3207B6EF40047CF5A /* XJURLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F58CECE6207B6EF40047CF5A /* XJURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F58CECE4207B6EF40047CF5A /* XJURLResponse.m */; };
-		F5F46EDB207C61AC00D0B939 /* XJCommonContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46ED9207C61AC00D0B939 /* XJCommonContext.h */; };
+		F5F46EDB207C61AC00D0B939 /* XJCommonContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46ED9207C61AC00D0B939 /* XJCommonContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5F46EDC207C61AC00D0B939 /* XJCommonContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EDA207C61AC00D0B939 /* XJCommonContext.m */; };
 		F5F46EDF207C664200D0B939 /* XJRequestSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F46EDD207C664200D0B939 /* XJRequestSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F5F46EE0207C664200D0B939 /* XJRequestSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EDE207C664200D0B939 /* XJRequestSender.m */; };

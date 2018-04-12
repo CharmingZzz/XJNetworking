@@ -10,5 +10,9 @@
 #define XJNetworking_h
 
 #import "XJRequestProvider.h"
+#import "XJCommonContext.h"
+#import "XJURLResponse.h"
+#import "NSURLRequest+XJNetworking.h"
+#import "NSArray+XJNetworking.h"
 
 #endif /* XJNetworking_h */

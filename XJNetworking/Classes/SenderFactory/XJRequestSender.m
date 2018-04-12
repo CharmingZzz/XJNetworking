@@ -28,17 +28,19 @@
         __block NSURLRequest *urlRequest = [request copy];
         
         [source.plugins enumerateObjectsUsingBlock:
-         ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,
-           NSUInteger idx,
-           BOOL * _Nonnull stop) {
+                        ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,
+                            NSUInteger idx,
+                            BOOL * _Nonnull stop) {
              if([obj respondsToSelector:@selector(willSendApiWithRequest:)]){
                  urlRequest = [obj willSendApiWithRequest:urlRequest];
              }
          }];
         
         __block NSURLSessionDataTask *task = nil;
-        task = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response,
-                                                                             id  _Nullable responseObject, NSError * _Nullable error) {
+        task = [self.manager dataTaskWithRequest:request completionHandler:
+                                                ^(NSURLResponse * _Nonnull response,
+                                                id  _Nullable responseObject,
+                                                  NSError * _Nullable error) {
             
             [self.taskTable removeObjectForKey:@(task.taskIdentifier)];
             

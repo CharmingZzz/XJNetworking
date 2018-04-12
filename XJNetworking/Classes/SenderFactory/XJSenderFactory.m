@@ -46,6 +46,9 @@ static NSString *TaskType[3] = {
 {
     self.manager.requestSerializer = [taskInfo.source respondsToSelector:@selector(requestSerializer)] ? taskInfo.source.requestSerialization : [AFHTTPRequestSerializer serializer];
     self.manager.responseSerializer = [taskInfo.source respondsToSelector:@selector(responseSerialization)] ? taskInfo.source.responseSerialization :[AFJSONResponseSerializer serializer];
+    [self.manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    self.manager.requestSerializer.timeoutInterval = [XJCommonContext shareInstance].requestTimeoutSeconds;
+    [self.manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
     XJRequestProviderTaskType taskType = [taskInfo.source respondsToSelector:@selector(taskType)] ? taskInfo.source.taskType : XJRequestProviderTaskTypeRequest;
    return [[self chooseSender:taskType] sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack];
