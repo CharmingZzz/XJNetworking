@@ -7,7 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
-#import "XJURLResponse.h"
+
+@class XJURLResponse;
 
 typedef void(^successCallBack)(XJURLResponse *response);
 typedef void(^failureCallBack)(NSError *error);

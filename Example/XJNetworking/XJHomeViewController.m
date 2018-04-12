@@ -8,7 +8,6 @@
 
 #import "XJHomeViewController.h"
 
-#import "XJNetworking.h"
 #import "HomeApi.h"
 
 @interface XJHomeViewController ()<XJRequestProviderSourcePlugin>

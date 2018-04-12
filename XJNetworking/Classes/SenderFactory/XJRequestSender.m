@@ -7,6 +7,7 @@
 
 #import "XJRequestSender.h"
 #import "XJCommonContext.h"
+#import "XJURLResponse.h"
 #import "NSURLRequest+XJNetworking.h"
 #import "NSArray+XJNetworking.h"
 
