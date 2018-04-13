@@ -20,10 +20,19 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		7677983D4BAF75C0CDE4C0D5 /* Pods_XJNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF45DC2EB91E210192C5FE /* Pods_XJNetworking_Example.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		F550D5B1207F45D60099838A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F550D595207F45D60099838A /* .gitkeep */; };
+		F550D5B2207F45D60099838A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F550D597207F45D60099838A /* .gitkeep */; };
+		F550D5B3207F45D60099838A /* XJRequestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D59A207F45D60099838A /* XJRequestProvider.m */; };
+		F550D5B4207F45D60099838A /* NSArray+XJNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D59D207F45D60099838A /* NSArray+XJNetworking.m */; };
+		F550D5B5207F45D60099838A /* NSURLRequest+XJNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D59F207F45D60099838A /* NSURLRequest+XJNetworking.m */; };
+		F550D5B6207F45D60099838A /* XJRequestSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A4207F45D60099838A /* XJRequestSender.m */; };
+		F550D5B7207F45D60099838A /* XJSenderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A6207F45D60099838A /* XJSenderFactory.m */; };
+		F550D5B8207F45D60099838A /* XJURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A9207F45D60099838A /* XJURLResponse.m */; };
+		F550D5B9207F45D60099838A /* XJCommonContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AB207F45D60099838A /* XJCommonContext.m */; };
+		F550D5BC207F46200099838A /* XJRequestProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AE207F45D60099838A /* XJRequestProviderTests.m */; };
 		F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46ED7207C4D4600D0B939 /* HomeApi.m */; };
 		F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EE2207C859700D0B939 /* XJHomeViewController.m */; };
 /* End PBXBuildFile section */
@@ -59,7 +68,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		61DF45DC2EB91E210192C5FE /* Pods_XJNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XJNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,6 +76,25 @@
 		A84C7A1747ED2ADDEA4DC54C /* Pods_XJNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XJNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59F930B5EB88AC2524E64BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E04F26097D289F2750609E16 /* XJNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XJNetworking.podspec; path = ../XJNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F550D595207F45D60099838A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		F550D597207F45D60099838A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		F550D599207F45D60099838A /* XJRequestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJRequestProvider.h; sourceTree = "<group>"; };
+		F550D59A207F45D60099838A /* XJRequestProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRequestProvider.m; sourceTree = "<group>"; };
+		F550D59C207F45D60099838A /* NSArray+XJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+XJNetworking.h"; sourceTree = "<group>"; };
+		F550D59D207F45D60099838A /* NSArray+XJNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+XJNetworking.m"; sourceTree = "<group>"; };
+		F550D59E207F45D60099838A /* NSURLRequest+XJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+XJNetworking.h"; sourceTree = "<group>"; };
+		F550D59F207F45D60099838A /* NSURLRequest+XJNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+XJNetworking.m"; sourceTree = "<group>"; };
+		F550D5A1207F45D60099838A /* XJNetworkingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJNetworkingProtocol.h; sourceTree = "<group>"; };
+		F550D5A3207F45D60099838A /* XJRequestSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJRequestSender.h; sourceTree = "<group>"; };
+		F550D5A4207F45D60099838A /* XJRequestSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRequestSender.m; sourceTree = "<group>"; };
+		F550D5A5207F45D60099838A /* XJSenderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSenderFactory.h; sourceTree = "<group>"; };
+		F550D5A6207F45D60099838A /* XJSenderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJSenderFactory.m; sourceTree = "<group>"; };
+		F550D5A8207F45D60099838A /* XJURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJURLResponse.h; sourceTree = "<group>"; };
+		F550D5A9207F45D60099838A /* XJURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJURLResponse.m; sourceTree = "<group>"; };
+		F550D5AA207F45D60099838A /* XJCommonContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCommonContext.h; sourceTree = "<group>"; };
+		F550D5AB207F45D60099838A /* XJCommonContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJCommonContext.m; sourceTree = "<group>"; };
+		F550D5AC207F45D60099838A /* XJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJNetworking.h; sourceTree = "<group>"; };
+		F550D5AE207F45D60099838A /* XJRequestProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRequestProviderTests.m; sourceTree = "<group>"; };
 		F5F46ED6207C4D4600D0B939 /* HomeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeApi.h; sourceTree = "<group>"; };
 		F5F46ED7207C4D4600D0B939 /* HomeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeApi.m; sourceTree = "<group>"; };
 		F5F46EE1207C859700D0B939 /* XJHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJHomeViewController.h; sourceTree = "<group>"; };
@@ -117,6 +144,7 @@
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for XJNetworking */,
+				F550D593207F45D60099838A /* XJNetworking */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
@@ -180,7 +208,6 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -206,6 +233,97 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		F550D593207F45D60099838A /* XJNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				F550D594207F45D60099838A /* Assets */,
+				F550D596207F45D60099838A /* Classes */,
+				F550D5AD207F45D60099838A /* Tests */,
+			);
+			name = XJNetworking;
+			path = ../XJNetworking;
+			sourceTree = "<group>";
+		};
+		F550D594207F45D60099838A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F550D595207F45D60099838A /* .gitkeep */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F550D596207F45D60099838A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F550D597207F45D60099838A /* .gitkeep */,
+				F550D5AC207F45D60099838A /* XJNetworking.h */,
+				F550D5AA207F45D60099838A /* XJCommonContext.h */,
+				F550D5AB207F45D60099838A /* XJCommonContext.m */,
+				F550D598207F45D60099838A /* Base */,
+				F550D59B207F45D60099838A /* Categories */,
+				F550D5A0207F45D60099838A /* Protocol */,
+				F550D5A2207F45D60099838A /* SenderFactory */,
+				F550D5A7207F45D60099838A /* URLResponse */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F550D598207F45D60099838A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F550D599207F45D60099838A /* XJRequestProvider.h */,
+				F550D59A207F45D60099838A /* XJRequestProvider.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		F550D59B207F45D60099838A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F550D59C207F45D60099838A /* NSArray+XJNetworking.h */,
+				F550D59D207F45D60099838A /* NSArray+XJNetworking.m */,
+				F550D59E207F45D60099838A /* NSURLRequest+XJNetworking.h */,
+				F550D59F207F45D60099838A /* NSURLRequest+XJNetworking.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		F550D5A0207F45D60099838A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				F550D5A1207F45D60099838A /* XJNetworkingProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		F550D5A2207F45D60099838A /* SenderFactory */ = {
+			isa = PBXGroup;
+			children = (
+				F550D5A5207F45D60099838A /* XJSenderFactory.h */,
+				F550D5A6207F45D60099838A /* XJSenderFactory.m */,
+				F550D5A3207F45D60099838A /* XJRequestSender.h */,
+				F550D5A4207F45D60099838A /* XJRequestSender.m */,
+			);
+			path = SenderFactory;
+			sourceTree = "<group>";
+		};
+		F550D5A7207F45D60099838A /* URLResponse */ = {
+			isa = PBXGroup;
+			children = (
+				F550D5A8207F45D60099838A /* XJURLResponse.h */,
+				F550D5A9207F45D60099838A /* XJURLResponse.m */,
+			);
+			path = URLResponse;
+			sourceTree = "<group>";
+		};
+		F550D5AD207F45D60099838A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F550D5AE207F45D60099838A /* XJRequestProviderTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -217,8 +335,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				205A8F183FF944729238E1E9 /* [CP] Embed Pods Frameworks */,
-				CC87426DEB558D57C776DDC4 /* [CP] Copy Pods Resources */,
+				CAD348E8834D31B7AA826E13 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,8 +354,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				E5EC5EBEE9A4B9578DB53987 /* [CP] Embed Pods Frameworks */,
-				A7C826C672C7A438DE8C3521 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,6 +406,8 @@
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				F550D5B1207F45D60099838A /* .gitkeep in Resources */,
+				F550D5B2207F45D60099838A /* .gitkeep in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -307,26 +424,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		205A8F183FF944729238E1E9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/XJNetworking/XJNetworking.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XJNetworking.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		562FB20372E1230853EDF3D9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,49 +460,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A7C826C672C7A438DE8C3521 /* [CP] Copy Pods Resources */ = {
+		CAD348E8834D31B7AA826E13 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Tests/Pods-XJNetworking_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC87426DEB558D57C776DDC4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5EC5EBEE9A4B9578DB53987 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Tests/Pods-XJNetworking_Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -415,6 +487,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F550D5B9207F45D60099838A /* XJCommonContext.m in Sources */,
+				F550D5B5207F45D60099838A /* NSURLRequest+XJNetworking.m in Sources */,
+				F550D5B7207F45D60099838A /* XJSenderFactory.m in Sources */,
+				F550D5B8207F45D60099838A /* XJURLResponse.m in Sources */,
+				F550D5B6207F45D60099838A /* XJRequestSender.m in Sources */,
+				F550D5B4207F45D60099838A /* NSArray+XJNetworking.m in Sources */,
+				F550D5B3207F45D60099838A /* XJRequestProvider.m in Sources */,
 				6003F59E195388D20070C39A /* XJAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* XJViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
@@ -427,7 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				F550D5BC207F46200099838A /* XJRequestProviderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

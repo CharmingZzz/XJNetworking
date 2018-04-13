@@ -3,7 +3,7 @@
 //  XJNetworking
 //
 //  Created by xujie on 2018/4/11.
-//
+//  Copyright © 2018年 XuJie. All rights reserved.
 
 #import "XJSenderFactory.h"
 #import "XJCommonContext.h"
@@ -11,9 +11,10 @@
 
 @interface XJSenderFactory()
 
-@property (nonatomic,strong,readwrite)AFHTTPSessionManager *manager;
-@property (nonatomic,strong,readwrite)NSMutableDictionary <NSNumber *,NSURLSessionDataTask *>*taskTable;
-@property (nonatomic,strong)NSMutableDictionary <NSString *,__kindof XJSenderFactory *>*senderTable;
+@property (nonatomic, strong, readwrite)AFHTTPSessionManager *manager;
+@property (nonatomic, strong, readwrite)NSMutableDictionary <NSNumber *,NSURLSessionDataTask *>*taskTable;
+@property (nonatomic, strong, readwrite)NSMutableDictionary <NSNumber *,XJTaskInfo *>*taskInfoTable;
+@property (nonatomic, strong)NSMutableDictionary <NSString *,__kindof XJSenderFactory *>*senderTable;
 
 @end
 
@@ -63,6 +64,7 @@ static NSString *TaskType[3] = {
             if (identifier.unsignedIntegerValue == key.unsignedIntegerValue){
                 [obj cancel];
                 [self.taskTable removeObjectForKey:key];
+                [self.taskInfoTable removeObjectForKey:key];
             }
         }];
     }
@@ -98,6 +100,15 @@ static NSString *TaskType[3] = {
     }
     return _taskTable;
 }
+
+- (NSMutableDictionary<NSNumber *,XJTaskInfo *> *)taskInfoTable
+{
+    if(!_taskInfoTable){
+        _taskInfoTable = [NSMutableDictionary dictionary];
+    }
+    return _taskInfoTable;
+}
+
 
 - (NSMutableDictionary<NSString *,XJSenderFactory *> *)senderTable
 {
@@ -137,7 +148,9 @@ static NSString *TaskType[3] = {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:self.source.parameters];
     [params addEntriesFromDictionary:[XJCommonContext shareInstance].commonParams];
     
-    BOOL shouldSend = [self.source.plugins xj_any:
+    NSArray *plugins = [self.source respondsToSelector:@selector(plugins)] ? self.source.plugins : @[];
+    
+    BOOL shouldSend = [plugins xj_any:
                        ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
                            if([obj respondsToSelector:@selector(shouldSendApiWithParams:caller:)]){
                                if(![obj shouldSendApiWithParams:params caller:self.caller]){
@@ -149,10 +162,8 @@ static NSString *TaskType[3] = {
     
     if (!shouldSend) {
         __block NSDictionary *pams = [params copy];
-        [self.source.plugins enumerateObjectsUsingBlock:
-                                ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,
-                                  NSUInteger idx,
-                                  BOOL * _Nonnull stop) {
+        [plugins enumerateObjectsUsingBlock:
+                                ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,NSUInteger idx,BOOL * _Nonnull stop) {
             if([obj respondsToSelector:@selector(willSendApiWithParams:)]){
                 pams = [obj willSendApiWithParams:pams];
             }
