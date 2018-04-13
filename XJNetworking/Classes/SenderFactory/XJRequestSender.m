@@ -19,7 +19,6 @@
         
         id <XJRequestProviderCommonSource>source = taskInfo.source;
         id caller = taskInfo.caller;
-        
         NSArray *plugins = [source respondsToSelector:@selector(plugins)] ? source.plugins : @[];
         
         NSError *error = nil;

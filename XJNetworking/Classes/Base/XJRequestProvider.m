@@ -74,7 +74,6 @@ static NSString *observerKey = @"isCancelled";
 - (XJRequestCancellable *)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
     XJTaskInfo *info = [[XJTaskInfo alloc]initWithSource:source from:caller];
-
     XJRequestInnerCancellable *cancellable = [[XJRequestInnerCancellable alloc]init];
     [cancellable addObserver:self forKeyPath:observerKey options:NSKeyValueObservingOptionNew context:nil];
     successCallBack cb = ^(XJURLResponse *response) {
@@ -87,11 +86,9 @@ static NSString *observerKey = @"isCancelled";
     };
     
     NSUInteger identifier = [[XJSenderFactory shareInstance] sendRequestWithTaskInfo:info success:cb failure:fcb];
-    
     if(identifier == NSNotFound){return nil;}
     
     self.cancelTable[@(identifier)] = cancellable;
-    
     return cancellable;
 }
 
