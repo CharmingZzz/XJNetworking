@@ -22,7 +22,7 @@ UIKIT_EXTERN NSString *RequestType[2];
 
 - (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
 
-- (void)cancelRequestWithIDs:(NSArray *)identifiers;
+- (void)cancelRequestWithIDs:(NSArray *)identifiers taskType:(XJRequestProviderTaskType)type;
 
 @end
 

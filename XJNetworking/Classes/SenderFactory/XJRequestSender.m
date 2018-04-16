@@ -26,18 +26,17 @@
         NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:RequestType[type] URLString:taskInfo.fullUrl parameters:taskInfo.finalParams error:&error];
         if(error){return NSNotFound;}
         
-        request.xj_requestParams = taskInfo.finalParams;
         __block NSURLRequest *urlRequest = [request copy];
-        
         [plugins enumerateObjectsUsingBlock:
                         ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,NSUInteger idx,BOOL * _Nonnull stop) {
              if([obj respondsToSelector:@selector(willSendApiWithRequest:)]){
                  urlRequest = [obj willSendApiWithRequest:urlRequest];
              }
          }];
+        urlRequest.xj_requestParams = taskInfo.finalParams;
         
         __block NSURLSessionDataTask *task = nil;
-        task = [self.manager dataTaskWithRequest:request completionHandler:
+        task = [self.manager dataTaskWithRequest:urlRequest completionHandler:
                                                 ^(NSURLResponse * _Nonnull response,id  _Nullable responseObject,NSError * _Nullable error) {
             
             [self.taskTable removeObjectForKey:@(task.taskIdentifier)];

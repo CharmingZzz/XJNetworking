@@ -9,7 +9,7 @@
 
 @interface XJURLResponse : NSObject
 
-@property (nonatomic, copy, readonly) NSURLRequest *request;
+@property (nonatomic, strong, readonly) NSURLRequest *request;
 
 @property (nonatomic, copy, readonly) NSURLResponse *response;
 

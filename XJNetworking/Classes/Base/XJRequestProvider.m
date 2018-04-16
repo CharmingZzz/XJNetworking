@@ -13,6 +13,7 @@
 @interface XJRequestInnerCancellable: XJRequestCancellable
 
 @property (nonatomic,assign) BOOL isFinished;
+@property (nonatomic,assign) XJRequestProviderTaskType taskType;
 
 @end
 
@@ -21,8 +22,8 @@
 - (void)cancel
 {
     if(self.isFinished)return;
-    [super cancel];
     self.isFinished = YES;
+    [super cancel];
 }
 
 - (BOOL)isCancelled
@@ -75,6 +76,7 @@ static NSString *observerKey = @"isCancelled";
 {
     XJTaskInfo *info = [[XJTaskInfo alloc]initWithSource:source from:caller];
     XJRequestInnerCancellable *cancellable = [[XJRequestInnerCancellable alloc]init];
+    cancellable.taskType = [source respondsToSelector:@selector(taskType)] ? source.taskType : XJRequestProviderTaskTypeRequest;
     [cancellable addObserver:self forKeyPath:observerKey options:NSKeyValueObservingOptionNew context:nil];
     successCallBack cb = ^(XJURLResponse *response) {
         cancellable.isFinished = YES;
@@ -106,7 +108,7 @@ static NSString *observerKey = @"isCancelled";
                                                               XJRequestCancellable * _Nonnull obj,
                                                               BOOL * _Nonnull stop) {
             if ([object isEqual:obj]){
-                [[XJSenderFactory shareInstance] cancelRequestWithIDs:@[key]];
+                [[XJSenderFactory shareInstance] cancelRequestWithIDs:@[key] taskType:((XJRequestInnerCancellable *)obj).taskType];
                 *stop = YES;
             }
         }];

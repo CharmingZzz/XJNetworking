@@ -17,9 +17,7 @@
 - (void)cancelAllRequest;
 
 - (XJRequestCancellable *)requestWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller;
-
 - (XJRequestCancellable *)requestWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
-
 
 @end
 

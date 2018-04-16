@@ -10,7 +10,7 @@
 
 @interface XJURLResponse()
 
-@property (nonatomic, copy, readwrite) NSURLRequest *request;
+@property (nonatomic, strong, readwrite) NSURLRequest *request;
 
 @property (nonatomic, copy, readwrite) NSURLResponse *response;
 

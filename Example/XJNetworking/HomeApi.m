@@ -16,22 +16,27 @@
 
 - (NSString *)baseURL
 {
-    return @"";
+    return @"https://httpbin.org";
 }
 
 - (NSString *)methodname
 {
-    return @"home";
+    return @"get";
 }
 
 - (NSDictionary *)parameters
 {
-    return @{@"test":@"testPams"};
+    return @{};
 }
 
 - (NSArray<id<XJRequestProviderSourcePlugin>> *)plugins
 {
     return @[self.plugin];
+}
+
+- (XJRequestProviderRequestType)requestType
+{
+    return XJRequestProviderRequestTypeGet;
 }
 
 

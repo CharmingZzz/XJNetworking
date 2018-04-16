@@ -55,16 +55,17 @@ static NSString *TaskType[3] = {
    return [[self chooseSender:taskType] sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack];
 }
 
-- (void)cancelRequestWithIDs:(NSArray *)identifiers
+- (void)cancelRequestWithIDs:(NSArray *)identifiers taskType:(XJRequestProviderTaskType)type
 {
+    XJSenderFactory *sender = [self chooseSender:type];
     for (NSNumber *identifier in identifiers){
-        [self.taskTable enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key,
+        [sender.taskTable enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key,
                                                             NSURLSessionDataTask * _Nonnull obj,
                                                             BOOL * _Nonnull stop) {
             if (identifier.unsignedIntegerValue == key.unsignedIntegerValue){
                 [obj cancel];
-                [self.taskTable removeObjectForKey:key];
-                [self.taskInfoTable removeObjectForKey:key];
+                [sender.taskTable removeObjectForKey:key];
+                [sender.taskInfoTable removeObjectForKey:key];
             }
         }];
     }

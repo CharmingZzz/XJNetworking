@@ -28,6 +28,7 @@
     
     [self.homeApiProvider requestWithSource:api from:self success:^(XJURLResponse *response) {
         
+        NSLog(@"----%@---",response.content);
     } failure:^(NSError *error) {
         NSLog(@"----%@---",error.description);
     }];
@@ -50,7 +51,7 @@
 - (NSURLRequest *)willSendApiWithRequest:(__kindof NSURLRequest *)request
 {
     NSLog(@"----%s---",__func__);
-    return request;
+    return [NSURLRequest new];
 }
 
 - (void)afterSendApiWithParams:(NSDictionary *)params caller:(id)caller

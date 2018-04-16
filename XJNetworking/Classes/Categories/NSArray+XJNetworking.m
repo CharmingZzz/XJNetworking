@@ -45,6 +45,7 @@
 - (void)xj_makeObjectsPerformSelector:(SEL)selector, ...
 {
     for (NSObject *obj in self) {
+        if(![obj respondsToSelector:selector]){continue;}
         NSMethodSignature *sig = [obj methodSignatureForSelector:selector];
         if(!sig){continue;}
         NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
