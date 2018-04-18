@@ -23,20 +23,16 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor redColor];
-   
+
+    
+    [self.homeApiProvider requestWithSource:[[HomeApi alloc]init] from:self success:^(XJURLResponse *response) {
+        NSLog(@"----%@---",response.content);
+    } failure:^(NSError *error) {
+        NSLog(@"----%@---",error.description);
+    }];
 }
 
-- (void)refresh
-{
-    self.homeApi.pageType = XJRequestProviderPageTypeNewest;
-    [self request];
-}
 
-- (void)loadMore
-{
-    self.homeApi.pageType = XJRequestProviderPageTypeMore;
-    [self request];
-}
 
 - (void)request
 {

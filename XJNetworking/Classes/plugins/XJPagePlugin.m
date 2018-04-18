@@ -15,6 +15,7 @@ NSString *kXJPagePluginPageSizeDefultValue = @"kXJPagePluginPageSizeDefultValue"
 
 @interface XJPagePlugin()
 
+@property (nonatomic, assign, readwrite)BOOL hasNextPage;
 @property (nonatomic, copy)NSDictionary *ColumnDict;
 @property (nonatomic, assign)NSInteger pageIndex;
 @property (nonatomic, assign)NSInteger pageSize;

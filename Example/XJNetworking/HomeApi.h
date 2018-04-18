@@ -12,6 +12,7 @@
 @interface HomeApi : NSObject<XJRequestProviderPageSource>
 
 @property (nonatomic, assign)XJRequestProviderPageType pageType;
+@property (nonatomic, assign, readonly)BOOL hasNextPage;
 @property (nonatomic, weak)id <XJRequestProviderSourcePlugin>plugin;
 
 @end

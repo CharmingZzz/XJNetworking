@@ -55,5 +55,10 @@
     return _pagePlugin;
 }
 
+- (BOOL)hasNextPage
+{
+    return self.pagePlugin.hasNextPage;
+}
+
 
 @end
