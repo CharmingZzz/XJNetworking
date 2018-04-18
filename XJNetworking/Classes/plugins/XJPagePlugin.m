@@ -63,6 +63,11 @@ static NSString *const defaultPageSizeKey = @"pageSize";
     return [dict copy];
 }
 
+- (void)afterApiSuccessWithResponse:(XJURLResponse *)response caller:(id)caller
+{
+    // subclass to implement
+}
+
 - (void)afterApiFailureWithError:(NSError *)error caller:(id)caller
 {
     self.pageIndex = self.rollbackPageIndex;

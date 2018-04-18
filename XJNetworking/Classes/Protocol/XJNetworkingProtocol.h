@@ -70,5 +70,6 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderPageType) {
 
 @required
 @property (nonatomic, assign)XJRequestProviderPageType pageType;
+@property (nonatomic, assign, readonly)BOOL hasNextPage;
 
 @end

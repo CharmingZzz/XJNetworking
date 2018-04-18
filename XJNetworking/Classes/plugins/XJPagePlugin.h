@@ -17,6 +17,7 @@ UIKIT_EXTERN NSString *kXJPagePluginPageSizeDefultValue;
 @interface XJPagePlugin : NSObject<XJRequestProviderSourcePlugin>
 
 @property (nonatomic, assign)XJRequestProviderPageType pageType;
+@property (nonatomic, assign, readonly)BOOL hasNextPage;
 + (instancetype)pluginWithColumnDict:(NSDictionary <NSString *,NSString *>*)dict;
 
 @end
