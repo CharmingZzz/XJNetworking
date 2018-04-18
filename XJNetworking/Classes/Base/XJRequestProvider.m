@@ -52,6 +52,7 @@
 @interface XJRequestProvider()
 
 @property (nonatomic,strong)NSMutableDictionary <NSNumber *,XJRequestCancellable *>*cancelTable;
+@property (nonatomic,strong)NSMapTable <id <XJRequestProviderCommonSource>,XJRequestCancellable *>*cancelSourceTable;
 
 @end
 
@@ -74,6 +75,13 @@ static NSString *observerKey = @"isCancelled";
 
 - (XJRequestCancellable *)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
+    NSAssert(source, @"source can't be nil");
+    
+    XJRequestCancellable *existcancellable = [self.cancelSourceTable objectForKey:source];
+    if(existcancellable && !existcancellable.isCancelled){
+        [existcancellable cancel];
+    }
+    
     XJTaskInfo *info = [[XJTaskInfo alloc]initWithSource:source from:caller];
     XJRequestInnerCancellable *cancellable = [[XJRequestInnerCancellable alloc]init];
     cancellable.taskType = [source respondsToSelector:@selector(taskType)] ? source.taskType : XJRequestProviderTaskTypeRequest;
@@ -91,6 +99,7 @@ static NSString *observerKey = @"isCancelled";
     if(identifier == NSNotFound){return nil;}
     
     self.cancelTable[@(identifier)] = cancellable;
+    [self.cancelSourceTable setObject:cancellable forKey:source];
     return cancellable;
 }
 
@@ -123,6 +132,14 @@ static NSString *observerKey = @"isCancelled";
         _cancelTable = [NSMutableDictionary dictionary];
     }
     return _cancelTable;
+}
+
+- (NSMapTable<id<XJRequestProviderCommonSource>,XJRequestCancellable *> *)cancelSourceTable
+{
+    if(!_cancelSourceTable){
+        _cancelSourceTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsWeakMemory valueOptions:NSPointerFunctionsWeakMemory];
+    }
+    return _cancelSourceTable;
 }
 
 #pragma mark - override method

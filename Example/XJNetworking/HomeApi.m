@@ -7,8 +7,11 @@
 //
 
 #import "HomeApi.h"
+#import "XJPagePlugin.h"
 
 @interface HomeApi()
+
+@property (nonatomic, strong)XJPagePlugin *pagePlugin;
 
 @end
 
@@ -31,12 +34,25 @@
 
 - (NSArray<id<XJRequestProviderSourcePlugin>> *)plugins
 {
-    return @[self.plugin];
+    return @[self.plugin,self.pagePlugin];
 }
 
 - (XJRequestProviderRequestType)requestType
 {
     return XJRequestProviderRequestTypeGet;
+}
+
+- (XJPagePlugin *)pagePlugin
+{
+    if(!_pagePlugin){
+        _pagePlugin = [XJPagePlugin pluginWithColumnDict:@{
+                                                           kXJPagePluginPageIndexKey : @"pageIndex",
+                                                           kXJPagePluginPageSizeKey : @"pageSize",
+                                                           kXJPagePluginPageIndexDefultValue : @"1",
+                                                           kXJPagePluginPageSizeDefultValue : @"20",
+                                                           }];
+    }
+    return _pagePlugin;
 }
 
 

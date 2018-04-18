@@ -13,6 +13,7 @@
 @interface XJHomeViewController ()<XJRequestProviderSourcePlugin>
 
 @property (nonatomic,strong)XJRequestProvider *homeApiProvider;
+@property (nonatomic,strong)HomeApi *homeApi;
 
 @end
 
@@ -22,12 +23,24 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor redColor];
-    
-    HomeApi *api = [[HomeApi alloc]init];
-    api.plugin = self;
-    
-    [self.homeApiProvider requestWithSource:api from:self success:^(XJURLResponse *response) {
-        
+   
+}
+
+- (void)refresh
+{
+    self.homeApi.pageType = XJRequestProviderPageTypeNewest;
+    [self request];
+}
+
+- (void)loadMore
+{
+    self.homeApi.pageType = XJRequestProviderPageTypeMore;
+    [self request];
+}
+
+- (void)request
+{
+    [self.homeApiProvider requestWithSource:self.homeApi from:self success:^(XJURLResponse *response) {
         NSLog(@"----%@---",response.content);
     } failure:^(NSError *error) {
         NSLog(@"----%@---",error.description);
@@ -82,6 +95,15 @@
         _homeApiProvider = [XJRequestProvider defaultProvider];
     }
     return _homeApiProvider;
+}
+
+- (HomeApi *)homeApi
+{
+    if(!_homeApi){
+        _homeApi = [[HomeApi alloc]init];
+        _homeApi.plugin = self;
+    }
+    return _homeApi;
 }
 
 - (void)dealloc

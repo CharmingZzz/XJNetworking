@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "XJNetworking.h"
 
-@interface HomeApi : NSObject<XJRequestProviderCommonSource>
+@interface HomeApi : NSObject<XJRequestProviderPageSource>
 
-@property (nonatomic,weak)id <XJRequestProviderSourcePlugin>plugin;
+@property (nonatomic, assign)XJRequestProviderPageType pageType;
+@property (nonatomic, weak)id <XJRequestProviderSourcePlugin>plugin;
 
 @end

@@ -33,6 +33,7 @@
 		F550D5B8207F45D60099838A /* XJURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A9207F45D60099838A /* XJURLResponse.m */; };
 		F550D5B9207F45D60099838A /* XJCommonContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AB207F45D60099838A /* XJCommonContext.m */; };
 		F550D5BC207F46200099838A /* XJRequestProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AE207F45D60099838A /* XJRequestProviderTests.m */; };
+		F5A66B8E20872107001428EE /* XJPagePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A66B8C20872107001428EE /* XJPagePlugin.m */; };
 		F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46ED7207C4D4600D0B939 /* HomeApi.m */; };
 		F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EE2207C859700D0B939 /* XJHomeViewController.m */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,8 @@
 		F550D5AB207F45D60099838A /* XJCommonContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJCommonContext.m; sourceTree = "<group>"; };
 		F550D5AC207F45D60099838A /* XJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJNetworking.h; sourceTree = "<group>"; };
 		F550D5AE207F45D60099838A /* XJRequestProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRequestProviderTests.m; sourceTree = "<group>"; };
+		F5A66B8C20872107001428EE /* XJPagePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPagePlugin.m; sourceTree = "<group>"; };
+		F5A66B8D20872107001428EE /* XJPagePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPagePlugin.h; sourceTree = "<group>"; };
 		F5F46ED6207C4D4600D0B939 /* HomeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeApi.h; sourceTree = "<group>"; };
 		F5F46ED7207C4D4600D0B939 /* HomeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeApi.m; sourceTree = "<group>"; };
 		F5F46EE1207C859700D0B939 /* XJHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJHomeViewController.h; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 				F550D5A0207F45D60099838A /* Protocol */,
 				F550D5A2207F45D60099838A /* SenderFactory */,
 				F550D5A7207F45D60099838A /* URLResponse */,
+				F5A66B8B208720FF001428EE /* plugins */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -322,6 +326,15 @@
 				F550D5AE207F45D60099838A /* XJRequestProviderTests.m */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		F5A66B8B208720FF001428EE /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				F5A66B8D20872107001428EE /* XJPagePlugin.h */,
+				F5A66B8C20872107001428EE /* XJPagePlugin.m */,
+			);
+			path = plugins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -499,6 +512,7 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */,
 				F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */,
+				F5A66B8E20872107001428EE /* XJPagePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

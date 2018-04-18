@@ -24,6 +24,11 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderTaskType) {
     XJRequestProviderTaskTypeDownload,
 };
 
+typedef NS_ENUM(NSUInteger, XJRequestProviderPageType) {
+    XJRequestProviderPageTypeNewest,
+    XJRequestProviderPageTypeMore,
+};
+
 @protocol XJRequestProviderSourcePlugin <NSObject>
 
 @optional
@@ -61,3 +66,9 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderTaskType) {
 
 @end
 
+@protocol XJRequestProviderPageSource <XJRequestProviderCommonSource>
+
+@required
+@property (nonatomic, assign)XJRequestProviderPageType pageType;
+
+@end
