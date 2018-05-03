@@ -142,7 +142,7 @@ static NSString *TaskType[3] = {
     return self;
 }
 
-- (BOOL)prepareForRequset
+- (NSArray <id <XJRequestProviderSourcePlugin>>*)prepareForRequset
 {
     self.fullUrl = [self.source.baseURL stringByAppendingPathComponent:self.source.methodname];
     
@@ -172,7 +172,8 @@ static NSString *TaskType[3] = {
         self.finalParams = pams;
     }
     
-    return !shouldSend;
+    if (!shouldSend){return plugins;}
+    return nil;
 }
 
 @end

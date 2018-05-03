@@ -15,11 +15,10 @@
 
 - (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
-    if ([taskInfo prepareForRequset]){
-        
+    NSArray *plugins = [taskInfo prepareForRequset];
+    if (plugins){
         id <XJRequestProviderCommonSource>source = taskInfo.source;
         id caller = taskInfo.caller;
-        NSArray *plugins = [source respondsToSelector:@selector(plugins)] ? source.plugins : @[];
         
         NSError *error = nil;
         NSUInteger type = [source respondsToSelector:@selector(requestType)] ? source.requestType : XJRequestProviderRequestTypePost;

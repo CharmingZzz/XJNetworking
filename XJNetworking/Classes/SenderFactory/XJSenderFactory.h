@@ -37,6 +37,6 @@ UIKIT_EXTERN NSString *RequestType[2];
 @property (nonatomic, copy, readonly)NSDictionary *finalParams;
 
 - (instancetype)initWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller;
-- (BOOL)prepareForRequset;
+- (NSArray <id <XJRequestProviderSourcePlugin>>*)prepareForRequset;
 
 @end
