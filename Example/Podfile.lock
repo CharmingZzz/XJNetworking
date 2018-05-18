@@ -15,20 +15,24 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - OCMock (3.4.1)
+  - ReactiveObjC (3.0.0)
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
   - OCMock
+  - ReactiveObjC
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - OCMock
+    - ReactiveObjC
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   OCMock: 2cd0716969bab32a2283ff3a46fd26a8c8b4c5e3
+  ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
 
-PODFILE CHECKSUM: 73379c918678386758e6fe173aba1a42bb8d4291
+PODFILE CHECKSUM: 3a03c6ca8a1608b2f41f4e0c4a16348bd92f1c67
 
 COCOAPODS: 1.5.0

@@ -3,6 +3,7 @@ use_frameworks!
 target 'XJNetworking_Example' do
 
   pod 'AFNetworking','3.1.0'
+  pod 'ReactiveObjC'
   pod 'OCMock'
   target 'XJNetworking_Tests' do
     inherit! :search_paths

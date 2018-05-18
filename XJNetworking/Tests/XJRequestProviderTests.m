@@ -40,12 +40,13 @@
     OCMStub([pluginMock shouldSendApiWithParams:[OCMArg any] caller:[OCMArg any]]).andReturn(YES);
     OCMStub([pluginMock willSendApiWithParams:[OCMArg any]]).andCall(self,@selector(mock_willSendApiWithParams:));
     OCMStub([pluginMock willSendApiWithRequest:[OCMArg any]]).andCall(self,@selector(mock_willSendApiWithRequest:));
-    OCMStub([self.pluginMock afterSendApiWithParams:[OCMArg any] caller:[OCMArg any]]).andCall(self,@selector(mock_afterSendApiWithParams:caller:));
+    OCMStub([pluginMock afterSendApiWithParams:[OCMArg any] caller:[OCMArg any]]).andCall(self,@selector(mock_afterSendApiWithParams:caller:));
     OCMStub([pluginMock beforeApiSuccessWithResponse:[OCMArg any]]).andReturn(YES);
     OCMStub([pluginMock afterApiSuccessWithResponse:[OCMArg any] caller:[OCMArg any]]);
     OCMStub([pluginMock beforeApiFailureWithError:[OCMArg any]]).andReturn(YES);
     OCMStub([pluginMock afterApiFailureWithError:[OCMArg any] caller:[OCMArg any]]);
     self.pluginMock = pluginMock;
+    
 }
 
 - (void)tearDown {
@@ -58,11 +59,13 @@
 }
 
 - (void)testRequestGet {
+    OCMStub([self.commonSourceMock plugins]).andReturn(@[]);
     OCMStub([self.commonSourceMock methodname]).andReturn(@"get");
     [self startRequest:self.commonSourceMock];
 }
 
 - (void)testRequestPost {
+    OCMStub([self.commonSourceMock plugins]).andReturn(@[]);
     OCMStub([self.commonSourceMock requestType]).andReturn(XJRequestProviderRequestTypePost);
     OCMStub([self.commonSourceMock methodname]).andReturn(@"post");
     [self startRequest:self.commonSourceMock];
@@ -107,6 +110,7 @@
 
 - (void)testCancelleable1
 {
+    OCMStub([self.commonSourceMock plugins]).andReturn(@[]);
     OCMStub([self.commonSourceMock methodname]).andReturn(@"get");
     XJRequestCancellable *cancellable = [self startRequest:self.commonSourceMock];
     XCTAssertTrue(cancellable.isCancelled,@"request is already cancel");

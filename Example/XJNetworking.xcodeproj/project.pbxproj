@@ -23,6 +23,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		7677983D4BAF75C0CDE4C0D5 /* Pods_XJNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF45DC2EB91E210192C5FE /* Pods_XJNetworking_Example.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		F50959A620AE648100EDF7E2 /* XJRACRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F50959A520AE648100EDF7E2 /* XJRACRequestTests.m */; };
 		F550D5B1207F45D60099838A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F550D595207F45D60099838A /* .gitkeep */; };
 		F550D5B2207F45D60099838A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F550D597207F45D60099838A /* .gitkeep */; };
 		F550D5B3207F45D60099838A /* XJRequestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D59A207F45D60099838A /* XJRequestProvider.m */; };
@@ -33,7 +34,8 @@
 		F550D5B8207F45D60099838A /* XJURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A9207F45D60099838A /* XJURLResponse.m */; };
 		F550D5B9207F45D60099838A /* XJCommonContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AB207F45D60099838A /* XJCommonContext.m */; };
 		F550D5BC207F46200099838A /* XJRequestProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AE207F45D60099838A /* XJRequestProviderTests.m */; };
-		F5A66B8E20872107001428EE /* XJPagePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A66B8C20872107001428EE /* XJPagePlugin.m */; };
+		F5CEAF6B20AD48DC00FFE7CE /* XJPagePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CEAF6A20AD48DC00FFE7CE /* XJPagePlugin.m */; };
+		F5CEAF7220AD50E400FFE7CE /* XJRequestProvider+RAC.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CEAF7120AD50E400FFE7CE /* XJRequestProvider+RAC.m */; };
 		F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46ED7207C4D4600D0B939 /* HomeApi.m */; };
 		F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46EE2207C859700D0B939 /* XJHomeViewController.m */; };
 /* End PBXBuildFile section */
@@ -77,6 +79,7 @@
 		A84C7A1747ED2ADDEA4DC54C /* Pods_XJNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XJNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59F930B5EB88AC2524E64BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E04F26097D289F2750609E16 /* XJNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XJNetworking.podspec; path = ../XJNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F50959A520AE648100EDF7E2 /* XJRACRequestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJRACRequestTests.m; sourceTree = "<group>"; };
 		F550D595207F45D60099838A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		F550D597207F45D60099838A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		F550D599207F45D60099838A /* XJRequestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJRequestProvider.h; sourceTree = "<group>"; };
@@ -96,8 +99,10 @@
 		F550D5AB207F45D60099838A /* XJCommonContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJCommonContext.m; sourceTree = "<group>"; };
 		F550D5AC207F45D60099838A /* XJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJNetworking.h; sourceTree = "<group>"; };
 		F550D5AE207F45D60099838A /* XJRequestProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRequestProviderTests.m; sourceTree = "<group>"; };
-		F5A66B8C20872107001428EE /* XJPagePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPagePlugin.m; sourceTree = "<group>"; };
-		F5A66B8D20872107001428EE /* XJPagePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPagePlugin.h; sourceTree = "<group>"; };
+		F5CEAF6920AD48DC00FFE7CE /* XJPagePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPagePlugin.h; sourceTree = "<group>"; };
+		F5CEAF6A20AD48DC00FFE7CE /* XJPagePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPagePlugin.m; sourceTree = "<group>"; };
+		F5CEAF7020AD50E400FFE7CE /* XJRequestProvider+RAC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJRequestProvider+RAC.h"; sourceTree = "<group>"; };
+		F5CEAF7120AD50E400FFE7CE /* XJRequestProvider+RAC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XJRequestProvider+RAC.m"; sourceTree = "<group>"; };
 		F5F46ED6207C4D4600D0B939 /* HomeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeApi.h; sourceTree = "<group>"; };
 		F5F46ED7207C4D4600D0B939 /* HomeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeApi.m; sourceTree = "<group>"; };
 		F5F46EE1207C859700D0B939 /* XJHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJHomeViewController.h; sourceTree = "<group>"; };
@@ -267,7 +272,8 @@
 				F550D5A0207F45D60099838A /* Protocol */,
 				F550D5A2207F45D60099838A /* SenderFactory */,
 				F550D5A7207F45D60099838A /* URLResponse */,
-				F5A66B8B208720FF001428EE /* plugins */,
+				F5CEAF6820AD48DC00FFE7CE /* Plugins */,
+				F5CEAF6C20AD493200FFE7CE /* RAC */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -324,17 +330,27 @@
 			isa = PBXGroup;
 			children = (
 				F550D5AE207F45D60099838A /* XJRequestProviderTests.m */,
+				F50959A520AE648100EDF7E2 /* XJRACRequestTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		F5A66B8B208720FF001428EE /* plugins */ = {
+		F5CEAF6820AD48DC00FFE7CE /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				F5A66B8D20872107001428EE /* XJPagePlugin.h */,
-				F5A66B8C20872107001428EE /* XJPagePlugin.m */,
+				F5CEAF6920AD48DC00FFE7CE /* XJPagePlugin.h */,
+				F5CEAF6A20AD48DC00FFE7CE /* XJPagePlugin.m */,
 			);
-			path = plugins;
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		F5CEAF6C20AD493200FFE7CE /* RAC */ = {
+			isa = PBXGroup;
+			children = (
+				F5CEAF7020AD50E400FFE7CE /* XJRequestProvider+RAC.h */,
+				F5CEAF7120AD50E400FFE7CE /* XJRequestProvider+RAC.m */,
+			);
+			path = RAC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,11 +498,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-XJNetworking_Example/Pods-XJNetworking_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -503,6 +521,7 @@
 				F550D5B9207F45D60099838A /* XJCommonContext.m in Sources */,
 				F550D5B5207F45D60099838A /* NSURLRequest+XJNetworking.m in Sources */,
 				F550D5B7207F45D60099838A /* XJSenderFactory.m in Sources */,
+				F5CEAF7220AD50E400FFE7CE /* XJRequestProvider+RAC.m in Sources */,
 				F550D5B8207F45D60099838A /* XJURLResponse.m in Sources */,
 				F550D5B6207F45D60099838A /* XJRequestSender.m in Sources */,
 				F550D5B4207F45D60099838A /* NSArray+XJNetworking.m in Sources */,
@@ -512,7 +531,7 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */,
 				F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */,
-				F5A66B8E20872107001428EE /* XJPagePlugin.m in Sources */,
+				F5CEAF6B20AD48DC00FFE7CE /* XJPagePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F50959A620AE648100EDF7E2 /* XJRACRequestTests.m in Sources */,
 				F550D5BC207F46200099838A /* XJRequestProviderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

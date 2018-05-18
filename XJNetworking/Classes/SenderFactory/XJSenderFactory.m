@@ -144,7 +144,7 @@ static NSString *TaskType[3] = {
 
 - (NSArray <id <XJRequestProviderSourcePlugin>>*)prepareForRequset
 {
-    self.fullUrl = [self.source.baseURL stringByAppendingPathComponent:self.source.methodname];
+    self.fullUrl = [NSString stringWithFormat:@"%@/%@",self.source.baseURL,self.source.methodname];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:self.source.parameters];
     [params addEntriesFromDictionary:[XJCommonContext shareInstance].commonParams];
