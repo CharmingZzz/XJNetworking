@@ -10,8 +10,6 @@
 
 @class XJTaskInfo;
 
-UIKIT_EXTERN NSString *RequestType[2];
-
 @interface XJSenderFactory : NSObject
 
 @property (nonatomic, strong, readonly)AFHTTPSessionManager *manager;
@@ -19,9 +17,9 @@ UIKIT_EXTERN NSString *RequestType[2];
 @property (nonatomic, strong, readonly)NSMutableDictionary <NSNumber *,XJTaskInfo *>*taskInfoTable;
 
 + (instancetype)shareInstance;
-
-- (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
-
+- (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters constructingBodys:(NSArray *)uploadSources;
+- (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
 - (void)cancelRequestWithIDs:(NSArray *)identifiers taskType:(XJRequestProviderTaskType)type;
 
 @end

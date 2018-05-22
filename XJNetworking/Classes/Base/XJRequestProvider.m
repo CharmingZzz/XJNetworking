@@ -75,6 +75,11 @@ static NSString *observerKey = @"isCancelled";
 
 - (XJRequestCancellable *)requestWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
+    return [self uploadWithSource:source from:caller progress:nil success:callBack failure:failCallBack];
+}
+
+- (XJRequestCancellable *)uploadWithSource:(id<XJRequestProviderCommonSource>)source from:(id)caller progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+{
     NSAssert(source, @"source can't be nil");
     
     XJRequestCancellable *existcancellable = [self.cancelSourceTable objectForKey:source];
@@ -95,7 +100,7 @@ static NSString *observerKey = @"isCancelled";
         !failCallBack?:failCallBack(error);
     };
     
-    NSUInteger identifier = [[XJSenderFactory shareInstance] sendRequestWithTaskInfo:info success:cb failure:fcb];
+    NSUInteger identifier = [[XJSenderFactory shareInstance] sendRequestWithTaskInfo:info progress:progressCB success:cb failure:fcb];
     if(identifier == NSNotFound){return nil;}
     
     self.cancelTable[@(identifier)] = cancellable;

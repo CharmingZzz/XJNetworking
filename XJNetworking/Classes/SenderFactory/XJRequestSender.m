@@ -13,71 +13,30 @@
 
 @implementation XJRequestSender
 
-- (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters constructingBodys:(NSArray *)uploadSources
 {
-    NSArray *plugins = [taskInfo prepareForRequset];
-    if (plugins){
-        id <XJRequestProviderCommonSource>source = taskInfo.source;
-        id caller = taskInfo.caller;
-        
-        NSError *error = nil;
-        NSUInteger type = [source respondsToSelector:@selector(requestType)] ? source.requestType : XJRequestProviderRequestTypePost;
-        NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:RequestType[type] URLString:taskInfo.fullUrl parameters:taskInfo.finalParams error:&error];
-        if(error){return NSNotFound;}
-        
-        __block NSURLRequest *urlRequest = [request copy];
-        [plugins enumerateObjectsUsingBlock:
-                        ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,NSUInteger idx,BOOL * _Nonnull stop) {
-             if([obj respondsToSelector:@selector(willSendApiWithRequest:)]){
-                 urlRequest = [obj willSendApiWithRequest:urlRequest];
-             }
-         }];
-        urlRequest.xj_requestParams = taskInfo.finalParams;
-        
-        __block NSURLSessionDataTask *task = nil;
-        task = [self.manager dataTaskWithRequest:urlRequest completionHandler:
-                                                ^(NSURLResponse * _Nonnull response,id  _Nullable responseObject,NSError * _Nullable error) {
-            
-            [self.taskTable removeObjectForKey:@(task.taskIdentifier)];
-            [self.taskInfoTable removeObjectForKey:@(task.taskIdentifier)];
-            
-            if(error){
-                BOOL beforeFail = [plugins xj_any:
-                                   ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
-                                       if([obj respondsToSelector:@selector(beforeApiFailureWithError:)]){
-                                           if(![obj beforeApiFailureWithError:error]){
-                                               return YES;
-                                           }
-                                       }
-                                       return NO;
-                                   }];
-                if(!beforeFail){failCallBack(error);}
-                [plugins xj_makeObjectsPerformSelector:@selector(afterApiFailureWithError:caller:),error,caller];
-            }else{
-                XJURLResponse *urlRes = [[XJURLResponse alloc]initWithRequest:urlRequest response:response responseObject:responseObject];
-                
-                BOOL beforeSuccess = [plugins xj_any:
-                                      ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
-                                          if([obj respondsToSelector:@selector(beforeApiSuccessWithResponse:)]){
-                                              if(![obj beforeApiSuccessWithResponse:urlRes]){
-                                                  return YES;
-                                              }
-                                          }
-                                          return NO;
-                                      }];
-                if(!beforeSuccess){callBack(urlRes);}
-                [plugins xj_makeObjectsPerformSelector:@selector(afterApiSuccessWithResponse:caller:),urlRes,caller];
-            }
-        }];
-        
-        self.taskTable[@(task.taskIdentifier)] = task;
-        self.taskInfoTable[@(task.taskIdentifier)] = taskInfo;
-        [task resume];
-        [plugins xj_makeObjectsPerformSelector:@selector(afterSendApiWithParams:caller:),urlRequest.xj_requestParams,caller];
-        
-        return task.taskIdentifier;
-    }
-    return NSNotFound;
+    NSError *error = nil;
+    NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:method URLString:URLString parameters:parameters error:&error];
+    return error ? nil : request;
+}
+
+- (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+{
+    NSURLSessionDataTask *task = nil;
+    task = [self.manager dataTaskWithRequest:request completionHandler:
+            ^(NSURLResponse * _Nonnull response,id  _Nullable responseObject,NSError * _Nullable error) {
+
+                [self.taskTable removeObjectForKey:@(task.taskIdentifier)];
+                [self.taskInfoTable removeObjectForKey:@(task.taskIdentifier)];
+
+                XJURLResponse *urlRes = [[XJURLResponse alloc]initWithRequest:request response:response responseObject:responseObject];
+                if (error){
+                    failCallBack(error);
+                }else{
+                    callBack(urlRes);
+                }
+            }];
+    return task;
 }
 
 @end

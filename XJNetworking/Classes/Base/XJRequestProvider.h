@@ -18,6 +18,7 @@
 
 - (XJRequestCancellable *)requestWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller;
 - (XJRequestCancellable *)requestWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
+- (XJRequestCancellable *)uploadWithSource:(id <XJRequestProviderCommonSource>)source from:(id)caller progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
 
 @end
 

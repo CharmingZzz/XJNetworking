@@ -6,9 +6,6 @@
 //  Copyright © 2018年 XuJie. All rights reserved.
 
 #import "NSArray+XJNetworking.h"
-#import <objc/objc.h>
-#import <objc/runtime.h>
-#import <objc/message.h>
 
 @implementation NSArray (XJNetworking)
 

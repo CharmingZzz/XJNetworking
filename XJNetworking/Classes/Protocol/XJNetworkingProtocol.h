@@ -11,6 +11,7 @@
 @class XJURLResponse;
 
 typedef void(^successCallBack)(XJURLResponse *response);
+typedef void(^progressCallBack)(NSProgress *progress);
 typedef void(^failureCallBack)(NSError *error);
 
 typedef NS_ENUM(NSUInteger, XJRequestProviderRequestType) {
@@ -61,6 +62,8 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderPageType) {
 - (XJRequestProviderTaskType)taskType;
 // 插件
 - (NSArray <id <XJRequestProviderSourcePlugin>> *)plugins;
+// 需要上传的文件源数组 (String Path or Data)
+- (NSArray *)uploadSources;
 - (id <AFURLRequestSerialization>)requestSerialization;
 - (id <AFURLResponseSerialization>)responseSerialization;
 

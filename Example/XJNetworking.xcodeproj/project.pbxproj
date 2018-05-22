@@ -24,6 +24,7 @@
 		7677983D4BAF75C0CDE4C0D5 /* Pods_XJNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF45DC2EB91E210192C5FE /* Pods_XJNetworking_Example.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		F50959A620AE648100EDF7E2 /* XJRACRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F50959A520AE648100EDF7E2 /* XJRACRequestTests.m */; };
+		F53F1A5D20B425E20078D939 /* XJUploadSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F53F1A5C20B425E20078D939 /* XJUploadSender.m */; };
 		F550D5B1207F45D60099838A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F550D595207F45D60099838A /* .gitkeep */; };
 		F550D5B2207F45D60099838A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F550D597207F45D60099838A /* .gitkeep */; };
 		F550D5B3207F45D60099838A /* XJRequestProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D59A207F45D60099838A /* XJRequestProvider.m */; };
@@ -80,6 +81,8 @@
 		C59F930B5EB88AC2524E64BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E04F26097D289F2750609E16 /* XJNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XJNetworking.podspec; path = ../XJNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F50959A520AE648100EDF7E2 /* XJRACRequestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJRACRequestTests.m; sourceTree = "<group>"; };
+		F53F1A5B20B425E20078D939 /* XJUploadSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJUploadSender.h; sourceTree = "<group>"; };
+		F53F1A5C20B425E20078D939 /* XJUploadSender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJUploadSender.m; sourceTree = "<group>"; };
 		F550D595207F45D60099838A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		F550D597207F45D60099838A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		F550D599207F45D60099838A /* XJRequestProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJRequestProvider.h; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				F550D5A6207F45D60099838A /* XJSenderFactory.m */,
 				F550D5A3207F45D60099838A /* XJRequestSender.h */,
 				F550D5A4207F45D60099838A /* XJRequestSender.m */,
+				F53F1A5B20B425E20078D939 /* XJUploadSender.h */,
+				F53F1A5C20B425E20078D939 /* XJUploadSender.m */,
 			);
 			path = SenderFactory;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 				6003F59E195388D20070C39A /* XJAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* XJViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				F53F1A5D20B425E20078D939 /* XJUploadSender.m in Sources */,
 				F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */,
 				F5F46EE3207C859700D0B939 /* XJHomeViewController.m in Sources */,
 				F5CEAF6B20AD48DC00FFE7CE /* XJPagePlugin.m in Sources */,

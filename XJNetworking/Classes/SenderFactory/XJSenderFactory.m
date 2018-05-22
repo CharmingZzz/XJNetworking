@@ -7,6 +7,8 @@
 
 #import "XJSenderFactory.h"
 #import "XJCommonContext.h"
+#import "XJURLResponse.h"
+#import "NSURLRequest+XJNetworking.h"
 #import "NSArray+XJNetworking.h"
 
 @interface XJSenderFactory()
@@ -18,7 +20,7 @@
 
 @end
 
-NSString *RequestType[2] = {
+static NSString *RequestType[2] = {
     [XJRequestProviderRequestTypeGet] = @"GET",
     [XJRequestProviderRequestTypePost] = @"POST"
 };
@@ -43,7 +45,7 @@ static NSString *TaskType[3] = {
     return sender_;
 }
 
-- (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+- (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
     self.manager.requestSerializer = [taskInfo.source respondsToSelector:@selector(requestSerializer)] ? taskInfo.source.requestSerialization : [AFHTTPRequestSerializer serializer];
     self.manager.responseSerializer = [taskInfo.source respondsToSelector:@selector(responseSerialization)] ? taskInfo.source.responseSerialization :[AFJSONResponseSerializer serializer];
@@ -52,7 +54,73 @@ static NSString *TaskType[3] = {
     [self.manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
     XJRequestProviderTaskType taskType = [taskInfo.source respondsToSelector:@selector(taskType)] ? taskInfo.source.taskType : XJRequestProviderTaskTypeRequest;
-   return [[self chooseSender:taskType] sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo success:(successCallBack)callBack failure:(failureCallBack)failCallBack];
+    
+    NSArray *plugins = [taskInfo prepareForRequset];
+    if (plugins){
+        
+        XJSenderFactory *sender = [self chooseSender:taskType];
+        id <XJRequestProviderCommonSource>source = taskInfo.source;
+        id caller = taskInfo.caller;
+        
+        NSUInteger type = [source respondsToSelector:@selector(requestType)] ? source.requestType : XJRequestProviderRequestTypePost;
+        NSMutableURLRequest *request = [sender requestWithMethod:RequestType[type] URLString:taskInfo.fullUrl parameters:taskInfo.finalParams constructingBodys:[taskInfo.source respondsToSelector:@selector(uploadSources)] ? taskInfo.source.uploadSources : @[]];
+        if(!request){return NSNotFound;}
+        
+        __block NSURLRequest *urlRequest = [request copy];
+        [plugins enumerateObjectsUsingBlock:
+         ^(id<XJRequestProviderSourcePlugin>  _Nonnull obj,NSUInteger idx,BOOL * _Nonnull stop) {
+             if([obj respondsToSelector:@selector(willSendApiWithRequest:)]){
+                 urlRequest = [obj willSendApiWithRequest:urlRequest];
+             }
+         }];
+        urlRequest.xj_requestParams = taskInfo.finalParams;
+        
+        successCallBack cb = ^(XJURLResponse *response) {
+            BOOL beforeSuccess = [plugins xj_any:
+                                  ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
+                                      if([obj respondsToSelector:@selector(beforeApiSuccessWithResponse:)]){
+                                          if(![obj beforeApiSuccessWithResponse:response]){
+                                              return YES;
+                                          }
+                                      }
+                                      return NO;
+                                  }];
+            if(!beforeSuccess){callBack(response);}
+            [plugins xj_makeObjectsPerformSelector:@selector(afterApiSuccessWithResponse:caller:),response,caller];
+        };
+        failureCallBack fcb = ^(NSError *error) {
+            BOOL beforeFail = [plugins xj_any:
+                               ^BOOL(id<XJRequestProviderSourcePlugin> obj) {
+                                   if([obj respondsToSelector:@selector(beforeApiFailureWithError:)]){
+                                       if(![obj beforeApiFailureWithError:error]){
+                                           return YES;
+                                       }
+                                   }
+                                   return NO;
+                               }];
+            if(!beforeFail){failCallBack(error);}
+            [plugins xj_makeObjectsPerformSelector:@selector(afterApiFailureWithError:caller:),error,caller];
+        };
+        
+        NSURLSessionDataTask *task = [sender dataTaskWithRequest:urlRequest progress:progressCB success:cb failure:fcb];
+        sender.taskTable[@(task.taskIdentifier)] = task;
+        sender.taskInfoTable[@(task.taskIdentifier)] = taskInfo;
+        [task resume];
+        [plugins xj_makeObjectsPerformSelector:@selector(afterSendApiWithParams:caller:),urlRequest.xj_requestParams,caller];
+        
+        return task.taskIdentifier;
+    }
+    return NSNotFound;
+}
+
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters constructingBodys:(NSArray *)uploadSources
+{
+    return nil;// subclass to implement
+}
+
+- (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack
+{
+    return nil;// subclass to implement
 }
 
 - (void)cancelRequestWithIDs:(NSArray *)identifiers taskType:(XJRequestProviderTaskType)type
