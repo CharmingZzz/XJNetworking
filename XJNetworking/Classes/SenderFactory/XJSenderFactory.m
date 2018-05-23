@@ -160,6 +160,10 @@ static NSString *TaskType[3] = {
 {
     if(!_manager){
         _manager = [AFHTTPSessionManager manager];
+        AFSecurityPolicy *policy = [AFSecurityPolicy defaultPolicy];
+        policy.allowInvalidCertificates = YES;
+        policy.validatesDomainName = NO;
+        _manager.securityPolicy = policy;
     }
     return _manager;
 }
