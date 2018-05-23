@@ -18,7 +18,7 @@
 
 + (instancetype)shareInstance;
 - (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
-- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters constructingBodys:(NSArray *)uploadSources;
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters constructingBodys:(NSArray <NSDictionary *>*)uploadSources;
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack;
 - (void)cancelRequestWithIDs:(NSArray *)identifiers taskType:(XJRequestProviderTaskType)type;
 

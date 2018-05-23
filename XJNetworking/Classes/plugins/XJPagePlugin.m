@@ -8,10 +8,10 @@
 
 #import "XJPagePlugin.h"
 
-NSString *kXJPagePluginPageIndexKey = @"kXJPagePluginPageIndexKey";
-NSString *kXJPagePluginPageSizeKey = @"kXJPagePluginPageSizeKey";
-NSString *kXJPagePluginPageIndexDefultValue = @"kXJPagePluginPageIndexDefultValue";
-NSString *kXJPagePluginPageSizeDefultValue = @"kXJPagePluginPageSizeDefultValue";
+NSString * const XJPagePluginPageIndexKey = @"kXJPagePluginPageIndexKey";
+NSString * const XJPagePluginPageSizeKey = @"kXJPagePluginPageSizeKey";
+NSString * const XJPagePluginPageIndexDefultValue = @"kXJPagePluginPageIndexDefultValue";
+NSString * const XJPagePluginPageSizeDefultValue = @"kXJPagePluginPageSizeDefultValue";
 
 @interface XJPagePlugin()
 
@@ -32,21 +32,21 @@ static NSString *const defaultPageSizeKey = @"pageSize";
 {
     XJPagePlugin *plugin = [[self alloc]init];
     NSMutableDictionary *muDict = [NSMutableDictionary dictionaryWithDictionary:dict];
-    if(![dict.allKeys containsObject:kXJPagePluginPageIndexKey]){
-        muDict[kXJPagePluginPageIndexKey] = defaultPageIndexKey;
+    if(![dict.allKeys containsObject:XJPagePluginPageIndexKey]){
+        muDict[XJPagePluginPageIndexKey] = defaultPageIndexKey;
     }
-    if(![dict.allKeys containsObject:kXJPagePluginPageSizeKey]){
-        muDict[kXJPagePluginPageSizeKey] = defaultPageSizeKey;
+    if(![dict.allKeys containsObject:XJPagePluginPageSizeKey]){
+        muDict[XJPagePluginPageSizeKey] = defaultPageSizeKey;
     }
-    if(![dict.allKeys containsObject:kXJPagePluginPageIndexDefultValue]){
-        muDict[kXJPagePluginPageIndexDefultValue] = @"1";
+    if(![dict.allKeys containsObject:XJPagePluginPageIndexDefultValue]){
+        muDict[XJPagePluginPageIndexDefultValue] = @"1";
     }
-    if(![dict.allKeys containsObject:kXJPagePluginPageSizeDefultValue]){
-        muDict[kXJPagePluginPageSizeDefultValue] = @"20";
+    if(![dict.allKeys containsObject:XJPagePluginPageSizeDefultValue]){
+        muDict[XJPagePluginPageSizeDefultValue] = @"20";
     }
     plugin.ColumnDict = muDict;
-    plugin.pageIndex = [plugin.ColumnDict[kXJPagePluginPageIndexDefultValue] integerValue];
-    plugin.pageSize = [plugin.ColumnDict[kXJPagePluginPageSizeDefultValue] integerValue];
+    plugin.pageIndex = [plugin.ColumnDict[XJPagePluginPageIndexDefultValue] integerValue];
+    plugin.pageSize = [plugin.ColumnDict[XJPagePluginPageSizeDefultValue] integerValue];
     return plugin;
 }
 
@@ -55,12 +55,12 @@ static NSString *const defaultPageSizeKey = @"pageSize";
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
     self.rollbackPageIndex = self.pageIndex;
     if(self.pageType == XJRequestProviderPageTypeNewest){
-        self.pageIndex = [self.ColumnDict[kXJPagePluginPageIndexDefultValue] integerValue];
+        self.pageIndex = [self.ColumnDict[XJPagePluginPageIndexDefultValue] integerValue];
     }else if (self.pageType == XJRequestProviderPageTypeMore){
         self.pageIndex++;
     }
-    [dict setObject:[NSString stringWithFormat:@"%zd",self.pageIndex] forKey:self.ColumnDict[kXJPagePluginPageIndexKey]];
-    [dict setObject:[NSString stringWithFormat:@"%zd",self.pageSize] forKey:self.ColumnDict[kXJPagePluginPageSizeKey]];
+    [dict setObject:[NSString stringWithFormat:@"%zd",self.pageIndex] forKey:self.ColumnDict[XJPagePluginPageIndexKey]];
+    [dict setObject:[NSString stringWithFormat:@"%zd",self.pageSize] forKey:self.ColumnDict[XJPagePluginPageSizeKey]];
     return [dict copy];
 }
 

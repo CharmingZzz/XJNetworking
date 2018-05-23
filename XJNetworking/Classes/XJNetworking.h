@@ -14,5 +14,7 @@
 #import "XJURLResponse.h"
 #import "NSURLRequest+XJNetworking.h"
 #import "NSArray+XJNetworking.h"
+#import "XJRequestSender.h"
+#import "XJUploadSender.h"
 
 #endif /* XJNetworking_h */

@@ -9,18 +9,48 @@
 #import "XJUploadSender.h"
 #import "XJURLResponse.h"
 
+NSString * const XJUploadSenderSourceKey = @"XJUploadSenderSourceKey";
+NSString * const XJUploadSenderMineTypeKey = @"XJUploadSenderMineTypeKey";
+NSString * const XJUploadSenderFileNameKey = @"XJUploadSenderFileNameKey";
+NSString * const XJUploadSenderInputLength = @"XJUploadSenderInputLength";
+static NSString *const XJNetworkingUploadName = @"XJNetworkingUploadName";
+static NSString *const XJNetworkingUploadFileName = @"XJNetworkingUploadFileName";
+
 @implementation XJUploadSender
 
-- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters constructingBodys:(NSArray *)uploadSources
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters constructingBodys:(NSArray <NSDictionary *>*)uploadSources
 {
     NSError *error = nil;
     NSMutableURLRequest *request = [self.manager.requestSerializer multipartFormRequestWithMethod:method URLString:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        for (id content in uploadSources){
-            if ([content isKindOfClass:[NSString class]]){
-                [formData appendPartWithFileURL:content name:@"xxx" error:nil];
-            }else if ([content isKindOfClass:[NSData class]]){
-                [formData appendPartWithFileData:content name:@"xxx" fileName:@"xxx" mimeType:@""];
+        for (NSDictionary *dict in uploadSources){
+            id source = dict[XJUploadSenderSourceKey];
+            NSString *mineType = dict[XJUploadSenderMineTypeKey];
+            NSString *fileName = dict[XJUploadSenderFileNameKey];
+            if ([source isKindOfClass:[NSString class]]){
+                if(fileName.length && mineType.length){
+                    [formData appendPartWithFileURL:[NSURL URLWithString:source] name:XJNetworkingUploadName fileName:fileName mimeType:mineType error:nil];
+                }else if(mineType.length) {
+                    [formData appendPartWithFileURL:[NSURL URLWithString:source] name:XJNetworkingUploadName fileName:XJNetworkingUploadFileName mimeType:mineType error:nil];
+                }else {
+                    [formData appendPartWithFileURL:[NSURL URLWithString:source] name:XJNetworkingUploadName error:nil];
+                }
+            }else if ([source isKindOfClass:[NSData class]]){
+                if(fileName.length && mineType.length){
+                    [formData appendPartWithFileData:source name:XJNetworkingUploadName fileName:fileName mimeType:mineType];
+                }else if(mineType.length) {
+                    [formData appendPartWithFileData:source name:XJNetworkingUploadName fileName:XJNetworkingUploadFileName mimeType:mineType];
+                }else {
+                    [formData appendPartWithFormData:source name:XJNetworkingUploadName];
+                }
+            }else if ([source isKindOfClass:[NSInputStream class]]){
+                NSString *inputLength = dict[XJUploadSenderInputLength];
+                if(!inputLength.length || !mineType.length){return;}
+                if(fileName.length && mineType.length){
+                    [formData appendPartWithInputStream:source name:XJNetworkingUploadName fileName:fileName length:inputLength.longLongValue mimeType:mineType];
+                }else if(mineType.length) {
+                    [formData appendPartWithInputStream:source name:XJNetworkingUploadName fileName:XJNetworkingUploadFileName length:inputLength.longLongValue mimeType:mineType];
+                }
             }else {
                 NSAssert(false, @"uploadSources item only be NSString or NSData type");
             }

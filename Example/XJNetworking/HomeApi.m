@@ -46,10 +46,10 @@
 {
     if(!_pagePlugin){
         _pagePlugin = [XJPagePlugin pluginWithColumnDict:@{
-                                                           kXJPagePluginPageIndexKey : @"pageIndex",
-                                                           kXJPagePluginPageSizeKey : @"pageSize",
-                                                           kXJPagePluginPageIndexDefultValue : @"1",
-                                                           kXJPagePluginPageSizeDefultValue : @"20",
+                                                           XJPagePluginPageIndexKey : @"pageIndex",
+                                                           XJPagePluginPageSizeKey : @"pageSize",
+                                                           XJPagePluginPageIndexDefultValue : @"1",
+                                                           XJPagePluginPageSizeDefultValue : @"20",
                                                            }];
     }
     return _pagePlugin;

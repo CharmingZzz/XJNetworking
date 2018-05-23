@@ -62,8 +62,8 @@ typedef NS_ENUM(NSUInteger, XJRequestProviderPageType) {
 - (XJRequestProviderTaskType)taskType;
 // 插件
 - (NSArray <id <XJRequestProviderSourcePlugin>> *)plugins;
-// 需要上传的文件源数组 (String Path or Data)
-- (NSArray *)uploadSources;
+// 需要上传的文件源数组 (String Path , Data or InputStream) 
+- (NSArray <NSDictionary *>*)uploadSources;
 - (id <AFURLRequestSerialization>)requestSerialization;
 - (id <AFURLResponseSerialization>)responseSerialization;
 

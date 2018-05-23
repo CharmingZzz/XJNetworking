@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "XJNetworkingProtocol.h"
 
-UIKIT_EXTERN NSString *kXJPagePluginPageIndexKey;
-UIKIT_EXTERN NSString *kXJPagePluginPageSizeKey;
-UIKIT_EXTERN NSString *kXJPagePluginPageIndexDefultValue;
-UIKIT_EXTERN NSString *kXJPagePluginPageSizeDefultValue;
+UIKIT_EXTERN NSString * const XJPagePluginPageIndexKey;
+UIKIT_EXTERN NSString * const XJPagePluginPageSizeKey;
+UIKIT_EXTERN NSString * const XJPagePluginPageIndexDefultValue;
+UIKIT_EXTERN NSString * const XJPagePluginPageSizeDefultValue;
 
 @interface XJPagePlugin : NSObject<XJRequestProviderSourcePlugin>
 

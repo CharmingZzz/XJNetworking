@@ -17,6 +17,8 @@
 @property (nonatomic, strong, readwrite)NSMutableDictionary <NSNumber *,NSURLSessionDataTask *>*taskTable;
 @property (nonatomic, strong, readwrite)NSMutableDictionary <NSNumber *,XJTaskInfo *>*taskInfoTable;
 @property (nonatomic, strong)NSMutableDictionary <NSString *,__kindof XJSenderFactory *>*senderTable;
+@property (nonatomic, strong)AFHTTPRequestSerializer *requestSerializer;
+@property (nonatomic, strong)AFJSONResponseSerializer *responseSerializer;
 
 @end
 
@@ -47,8 +49,8 @@ static NSString *TaskType[3] = {
 
 - (NSUInteger)sendRequestWithTaskInfo:(XJTaskInfo *)taskInfo progress:(progressCallBack)progressCB success:(successCallBack)callBack failure:(failureCallBack)failCallBack
 {
-    self.manager.requestSerializer = [taskInfo.source respondsToSelector:@selector(requestSerializer)] ? taskInfo.source.requestSerialization : [AFHTTPRequestSerializer serializer];
-    self.manager.responseSerializer = [taskInfo.source respondsToSelector:@selector(responseSerialization)] ? taskInfo.source.responseSerialization :[AFJSONResponseSerializer serializer];
+    self.manager.requestSerializer = [taskInfo.source respondsToSelector:@selector(requestSerializer)] ? taskInfo.source.requestSerialization : self.requestSerializer;
+    self.manager.responseSerializer = [taskInfo.source respondsToSelector:@selector(responseSerialization)] ? taskInfo.source.responseSerialization : self.responseSerializer;
     [self.manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
     self.manager.requestSerializer.timeoutInterval = [XJCommonContext shareInstance].requestTimeoutSeconds;
     [self.manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
@@ -160,6 +162,22 @@ static NSString *TaskType[3] = {
         _manager = [AFHTTPSessionManager manager];
     }
     return _manager;
+}
+
+- (AFHTTPRequestSerializer *)requestSerializer
+{
+    if(!_requestSerializer){
+        _requestSerializer = [AFHTTPRequestSerializer serializer];
+    }
+    return _requestSerializer;
+}
+
+- (AFJSONResponseSerializer *)responseSerializer
+{
+    if(!_responseSerializer){
+        _responseSerializer = [AFJSONResponseSerializer serializer];
+    }
+    return _responseSerializer;
 }
 
 - (NSMutableDictionary<NSNumber *,NSURLSessionDataTask *> *)taskTable

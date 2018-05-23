@@ -8,6 +8,11 @@
 
 #import "XJSenderFactory.h"
 
+UIKIT_EXTERN NSString * const XJUploadSenderSourceKey;
+UIKIT_EXTERN NSString * const XJUploadSenderMineTypeKey;
+UIKIT_EXTERN NSString * const XJUploadSenderFileNameKey;
+UIKIT_EXTERN NSString * const XJUploadSenderInputLength;
+
 @interface XJUploadSender : XJSenderFactory
 
 @end
