@@ -8,9 +8,13 @@
 
 #import "XJSenderFactory.h"
 
+/** This parameter must not be nil*/
 UIKIT_EXTERN NSString * const XJUploadSenderSourceKey;
+/** when source is InputStream This parameter must not be nil*/
 UIKIT_EXTERN NSString * const XJUploadSenderMineTypeKey;
+UIKIT_EXTERN NSString * const XJUploadSenderNameKey;
 UIKIT_EXTERN NSString * const XJUploadSenderFileNameKey;
+/** when source is InputStream This parameter must not be nil*/
 UIKIT_EXTERN NSString * const XJUploadSenderInputLength;
 
 @interface XJUploadSender : XJSenderFactory
