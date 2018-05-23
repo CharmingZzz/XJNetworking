@@ -13,13 +13,14 @@
 
 @property (nonatomic,strong)XJRequestProvider *provider;
 @property (nonatomic,strong)id commonSourceMock;
+@property (nonatomic,strong)id uploadSourceMock;
 @property (nonatomic,strong)id pluginMock;
 @property (nonatomic,assign)BOOL pluginTestOpen;
 
 @end
 
 @implementation XJRequestProviderTests
-
+                                                                     
 - (void)setUp {
     [super setUp];
     
@@ -34,6 +35,17 @@
     OCMStub([apiMock requestSerialization]).andReturn([AFHTTPRequestSerializer serializer]);
     OCMStub([apiMock responseSerialization]).andReturn([AFJSONRequestSerializer serializer]);
     self.commonSourceMock = apiMock;
+    
+    id uploadMock = OCMProtocolMock(@protocol(XJRequestProviderCommonSource));
+    OCMStub([uploadMock baseURL]).andReturn(@"https://httpbin.org");
+    OCMStub([uploadMock parameters]).andReturn(@{});
+    OCMStub([uploadMock taskType]).andReturn(XJRequestProviderTaskTypeUpload);
+    OCMStub([uploadMock requestSerialization]).andReturn([AFHTTPRequestSerializer serializer]);
+    OCMStub([uploadMock responseSerialization]).andReturn([AFJSONRequestSerializer serializer]);
+    OCMStub([uploadMock plugins]).andReturn(@[]);
+    OCMStub([uploadMock requestType]).andReturn(XJRequestProviderRequestTypePost);
+    OCMStub([uploadMock methodname]).andReturn(@"post");
+    self.uploadSourceMock = uploadMock;
     
     // mock
     id pluginMock = OCMProtocolMock(@protocol(XJRequestProviderSourcePlugin));
@@ -55,6 +67,7 @@
     [self.provider cancelAllRequest];
     self.provider = nil;
     self.commonSourceMock = nil;
+    self.uploadSourceMock = nil;
     self.pluginMock = nil;
 }
 
@@ -138,6 +151,29 @@
     
     OCMVerify([self.pluginMock beforeApiFailureWithError:[OCMArg any]]);
     OCMVerify([self.pluginMock afterApiFailureWithError:[OCMArg any] caller:[OCMArg any]]);
+}
+
+- (void)testUpload
+{
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"timg" ofType:@"jpeg"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSInputStream *stream = [[NSInputStream alloc]initWithData:data];
+    NSArray *sources = @[@{XJUploadSenderSourceKey:stream,XJUploadSenderNameKey:@"XJUploadSenderName1",XJUploadSenderInputLength : [NSString stringWithFormat:@"%zd",data.length],XJUploadSenderMineTypeKey:@"image/jpeg"}];
+    OCMStub([self.uploadSourceMock uploadSources]).andReturn(sources);
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"test Async requset Cancelleable"];
+    __block double p = 0;
+    [self.provider uploadWithSource:self.uploadSourceMock from:self progress:^(NSProgress *progress) {
+        p = progress.fractionCompleted;
+    } success:^(XJURLResponse *response) {
+        NSLog(@"-------%@------",response.content);
+        XCTAssertEqual(p,1.0,@"not completed....");
+        [expectation fulfill];
+    } failure:^(NSError *error) {
+        
+    }];
+    [self waitForExpectationsWithTimeout:8.f handler:nil];
+    
 }
 
 - (NSDictionary *)mock_willSendApiWithParams:(NSDictionary *)params
