@@ -1,22 +1,22 @@
 //
-//  XJSenderFactory.m
+//  XJSenderBridge.m
 //  XJNetworking
 //
 //  Created by xujie on 2018/4/11.
 //  Copyright © 2018年 XuJie. All rights reserved.
 
-#import "XJSenderFactory.h"
+#import "XJSenderBridge.h"
 #import "XJCommonContext.h"
 #import "XJURLResponse.h"
 #import "NSURLRequest+XJNetworking.h"
 #import "NSArray+XJNetworking.h"
 
-@interface XJSenderFactory()
+@interface XJSenderBridge()
 
 @property (nonatomic, strong, readwrite)AFHTTPSessionManager *manager;
 @property (nonatomic, strong, readwrite)NSMutableDictionary <NSNumber *,NSURLSessionDataTask *>*taskTable;
 @property (nonatomic, strong, readwrite)NSMutableDictionary <NSNumber *,XJTaskInfo *>*taskInfoTable;
-@property (nonatomic, strong)NSMutableDictionary <NSString *,__kindof XJSenderFactory *>*senderTable;
+@property (nonatomic, strong)NSMutableDictionary <NSString *,__kindof XJSenderBridge *>*senderTable;
 @property (nonatomic, strong)AFHTTPRequestSerializer *requestSerializer;
 @property (nonatomic, strong)AFJSONResponseSerializer *responseSerializer;
 
@@ -33,16 +33,16 @@ static NSString *TaskType[3] = {
     [XJRequestProviderTaskTypeDownload] = @"XJDownloadSender",
 };
 
-@implementation XJSenderFactory
+@implementation XJSenderBridge
 
 #pragma mark - public method
 
 + (instancetype)shareInstance
 {
-    static XJSenderFactory *sender_;
+    static XJSenderBridge *sender_;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sender_ = [[XJSenderFactory alloc]init];
+        sender_ = [[XJSenderBridge alloc]init];
     });
     return sender_;
 }
@@ -60,7 +60,7 @@ static NSString *TaskType[3] = {
     NSArray *plugins = [taskInfo prepareForRequset];
     if (plugins){
         
-        XJSenderFactory *sender = [self chooseSender:taskType];
+        XJSenderBridge *sender = [self chooseSender:taskType];
         id <XJRequestProviderCommonSource>source = taskInfo.source;
         id caller = taskInfo.caller;
         
@@ -127,7 +127,7 @@ static NSString *TaskType[3] = {
 
 - (void)cancelRequestWithIDs:(NSArray *)identifiers taskType:(XJRequestProviderTaskType)type
 {
-    XJSenderFactory *sender = [self chooseSender:type];
+    XJSenderBridge *sender = [self chooseSender:type];
     for (NSNumber *identifier in identifiers){
         [sender.taskTable enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key,
                                                             NSURLSessionDataTask * _Nonnull obj,
@@ -143,10 +143,10 @@ static NSString *TaskType[3] = {
 
 #pragma mark - private method
 
-- (__kindof XJSenderFactory *)chooseSender:(XJRequestProviderTaskType)taskType
+- (__kindof XJSenderBridge *)chooseSender:(XJRequestProviderTaskType)taskType
 {
     NSString *senderClassName = TaskType[taskType];
-    XJSenderFactory *sender = self.senderTable[senderClassName];
+    XJSenderBridge *sender = self.senderTable[senderClassName];
     if(!sender){
         sender = [[NSClassFromString(senderClassName) alloc]init];
         self.senderTable[senderClassName] = sender;
@@ -201,7 +201,7 @@ static NSString *TaskType[3] = {
 }
 
 
-- (NSMutableDictionary<NSString *,XJSenderFactory *> *)senderTable
+- (NSMutableDictionary<NSString *,XJSenderBridge *> *)senderTable
 {
     if(!_senderTable){
         _senderTable = [NSMutableDictionary dictionaryWithCapacity:sizeof(TaskType)/sizeof(TaskType[0])];

@@ -1,5 +1,5 @@
 //
-//  XJSenderFactory.h
+//  XJSenderBridge.h
 //  XJNetworking
 //
 //  Created by xujie on 2018/4/11.
@@ -10,7 +10,7 @@
 
 @class XJTaskInfo;
 
-@interface XJSenderFactory : NSObject
+@interface XJSenderBridge : NSObject
 
 @property (nonatomic, strong, readonly)AFHTTPSessionManager *manager;
 @property (nonatomic, strong, readonly)NSMutableDictionary <NSNumber *,NSURLSessionDataTask *>*taskTable;

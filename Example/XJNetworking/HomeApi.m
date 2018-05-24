@@ -32,6 +32,11 @@
     return @{};
 }
 
+- (NSArray<NSDictionary *> *)uploadSources
+{
+    return @[@{XJUploadSenderSourceKey:@"user/path/xxxxx/xx.jpeg",XJUploadSenderNameKey:@"name",XJUploadSenderFileNameKey:@"fileName",XJUploadSenderMineTypeKey:@"image/jpeg"},@{XJUploadSenderSourceKey:[NSData new]},@{XJUploadSenderSourceKey:[NSInputStream new]}];
+}
+
 - (NSArray<id<XJRequestProviderSourcePlugin>> *)plugins
 {
     return @[self.plugin,self.pagePlugin];

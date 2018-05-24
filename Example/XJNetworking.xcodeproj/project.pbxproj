@@ -31,10 +31,11 @@
 		F550D5B4207F45D60099838A /* NSArray+XJNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D59D207F45D60099838A /* NSArray+XJNetworking.m */; };
 		F550D5B5207F45D60099838A /* NSURLRequest+XJNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D59F207F45D60099838A /* NSURLRequest+XJNetworking.m */; };
 		F550D5B6207F45D60099838A /* XJRequestSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A4207F45D60099838A /* XJRequestSender.m */; };
-		F550D5B7207F45D60099838A /* XJSenderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A6207F45D60099838A /* XJSenderFactory.m */; };
 		F550D5B8207F45D60099838A /* XJURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5A9207F45D60099838A /* XJURLResponse.m */; };
 		F550D5B9207F45D60099838A /* XJCommonContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AB207F45D60099838A /* XJCommonContext.m */; };
 		F550D5BC207F46200099838A /* XJRequestProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F550D5AE207F45D60099838A /* XJRequestProviderTests.m */; };
+		F59BD10920B5466C00B34740 /* timg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F59BD10720B544AF00B34740 /* timg.jpeg */; };
+		F5C3175F20B6ABDA003FD9CB /* XJSenderBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C3175E20B6ABDA003FD9CB /* XJSenderBridge.m */; };
 		F5CEAF6B20AD48DC00FFE7CE /* XJPagePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CEAF6A20AD48DC00FFE7CE /* XJPagePlugin.m */; };
 		F5CEAF7220AD50E400FFE7CE /* XJRequestProvider+RAC.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CEAF7120AD50E400FFE7CE /* XJRequestProvider+RAC.m */; };
 		F5F46ED8207C4D4600D0B939 /* HomeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F46ED7207C4D4600D0B939 /* HomeApi.m */; };
@@ -94,14 +95,15 @@
 		F550D5A1207F45D60099838A /* XJNetworkingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJNetworkingProtocol.h; sourceTree = "<group>"; };
 		F550D5A3207F45D60099838A /* XJRequestSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJRequestSender.h; sourceTree = "<group>"; };
 		F550D5A4207F45D60099838A /* XJRequestSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRequestSender.m; sourceTree = "<group>"; };
-		F550D5A5207F45D60099838A /* XJSenderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSenderFactory.h; sourceTree = "<group>"; };
-		F550D5A6207F45D60099838A /* XJSenderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJSenderFactory.m; sourceTree = "<group>"; };
 		F550D5A8207F45D60099838A /* XJURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJURLResponse.h; sourceTree = "<group>"; };
 		F550D5A9207F45D60099838A /* XJURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJURLResponse.m; sourceTree = "<group>"; };
 		F550D5AA207F45D60099838A /* XJCommonContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJCommonContext.h; sourceTree = "<group>"; };
 		F550D5AB207F45D60099838A /* XJCommonContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJCommonContext.m; sourceTree = "<group>"; };
 		F550D5AC207F45D60099838A /* XJNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJNetworking.h; sourceTree = "<group>"; };
 		F550D5AE207F45D60099838A /* XJRequestProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRequestProviderTests.m; sourceTree = "<group>"; };
+		F59BD10720B544AF00B34740 /* timg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpeg; sourceTree = "<group>"; };
+		F5C3175D20B6ABDA003FD9CB /* XJSenderBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJSenderBridge.h; sourceTree = "<group>"; };
+		F5C3175E20B6ABDA003FD9CB /* XJSenderBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJSenderBridge.m; sourceTree = "<group>"; };
 		F5CEAF6920AD48DC00FFE7CE /* XJPagePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPagePlugin.h; sourceTree = "<group>"; };
 		F5CEAF6A20AD48DC00FFE7CE /* XJPagePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPagePlugin.m; sourceTree = "<group>"; };
 		F5CEAF7020AD50E400FFE7CE /* XJRequestProvider+RAC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJRequestProvider+RAC.h"; sourceTree = "<group>"; };
@@ -312,8 +314,8 @@
 		F550D5A2207F45D60099838A /* SenderFactory */ = {
 			isa = PBXGroup;
 			children = (
-				F550D5A5207F45D60099838A /* XJSenderFactory.h */,
-				F550D5A6207F45D60099838A /* XJSenderFactory.m */,
+				F5C3175D20B6ABDA003FD9CB /* XJSenderBridge.h */,
+				F5C3175E20B6ABDA003FD9CB /* XJSenderBridge.m */,
 				F550D5A3207F45D60099838A /* XJRequestSender.h */,
 				F550D5A4207F45D60099838A /* XJRequestSender.m */,
 				F53F1A5B20B425E20078D939 /* XJUploadSender.h */,
@@ -334,6 +336,7 @@
 		F550D5AD207F45D60099838A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F59BD10720B544AF00B34740 /* timg.jpeg */,
 				F550D5AE207F45D60099838A /* XJRequestProviderTests.m */,
 				F50959A520AE648100EDF7E2 /* XJRACRequestTests.m */,
 			);
@@ -451,6 +454,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59BD10920B5466C00B34740 /* timg.jpeg in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,7 +529,7 @@
 			files = (
 				F550D5B9207F45D60099838A /* XJCommonContext.m in Sources */,
 				F550D5B5207F45D60099838A /* NSURLRequest+XJNetworking.m in Sources */,
-				F550D5B7207F45D60099838A /* XJSenderFactory.m in Sources */,
+				F5C3175F20B6ABDA003FD9CB /* XJSenderBridge.m in Sources */,
 				F5CEAF7220AD50E400FFE7CE /* XJRequestProvider+RAC.m in Sources */,
 				F550D5B8207F45D60099838A /* XJURLResponse.m in Sources */,
 				F550D5B6207F45D60099838A /* XJRequestSender.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <objc/message.h>
 #import "XJRequestProvider.h"
-#import "XJSenderFactory.h"
+#import "XJSenderBridge.h"
 
 @interface XJRequestInnerCancellable: XJRequestCancellable
 
@@ -100,7 +100,7 @@ static NSString *observerKey = @"isCancelled";
         !failCallBack?:failCallBack(error);
     };
     
-    NSUInteger identifier = [[XJSenderFactory shareInstance] sendRequestWithTaskInfo:info progress:progressCB success:cb failure:fcb];
+    NSUInteger identifier = [[XJSenderBridge shareInstance] sendRequestWithTaskInfo:info progress:progressCB success:cb failure:fcb];
     if(identifier == NSNotFound){return nil;}
     
     self.cancelTable[@(identifier)] = cancellable;
@@ -122,7 +122,7 @@ static NSString *observerKey = @"isCancelled";
                                                               XJRequestCancellable * _Nonnull obj,
                                                               BOOL * _Nonnull stop) {
             if ([object isEqual:obj]){
-                [[XJSenderFactory shareInstance] cancelRequestWithIDs:@[key] taskType:((XJRequestInnerCancellable *)obj).taskType];
+                [[XJSenderBridge shareInstance] cancelRequestWithIDs:@[key] taskType:((XJRequestInnerCancellable *)obj).taskType];
                 *stop = YES;
             }
         }];
